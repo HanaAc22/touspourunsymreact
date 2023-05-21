@@ -183,8 +183,16 @@
 .customButton {
     width: 200px;
     font-size: 16px;
-    background-color: #52a99d;
+    background-color: var(--color-primary);
     color: #fff;
+    margin-top: 20px;
+}
+
+.customButtonOutlined {
+    width: 200px;
+    font-size: 16px;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
     margin-top: 20px;
 }
 .customButton:hover {
@@ -233,6 +241,10 @@
 
 .servicesDiv {
     padding-left: 20px;
+}
+
+.btnContained {
+    background-color: var(--color-primary);
 }
 
 /* Media query section */
