@@ -288,7 +288,7 @@
             "ref": "f8fc53f1942f76679e9ee3c25fd44865355707b5"
         },
         "files": [
-            "assets/app.js",
+            "assets/script.js",
             "assets/bootstrap.js",
             "assets/controllers.json",
             "assets/controllers/hello_controller.js",
@@ -297,6 +297,9 @@
             "package.json",
             "webpack.config.js"
         ]
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.13.0"
     },
     "twig/extra-bundle": {
         "version": "v3.6.0"

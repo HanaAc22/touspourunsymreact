@@ -3,7 +3,6 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
-        <div {{ react_component('MyComponent', { 'fullName': 'haa' }) }}>
-            Loading... <i class="fas fa-cog fa-spin fa-3x"></i>
-        </div>
+        {% include 'layout.html.twig' %}
+        <div {{ react_component('components/public/Main') }}></div>
 {% endblock %}
