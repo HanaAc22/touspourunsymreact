@@ -188,13 +188,6 @@
     margin-top: 20px;
 }
 
-.customButtonOutlined {
-    width: 200px;
-    font-size: 16px;
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-    margin-top: 20px;
-}
 .customButton:hover {
     background-color: var(--color-secondary);
 }

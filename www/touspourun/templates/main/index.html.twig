@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Course{% endblock %}
 
 {% block body %}
         {% include 'layout.html.twig' %}
+        <div class="home">
         <div {{ react_component('components/public/Main') }}></div>
+        </div>
 {% endblock %}
