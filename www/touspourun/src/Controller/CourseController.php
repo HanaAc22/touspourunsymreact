@@ -32,7 +32,7 @@ class CourseController extends AbstractController
             $category = new Category();
 
             $courseModel = $form->getData();
-            dd($)
+            // dd($courseModel)
             $picture = $form->get('picture')->getData();
 
             if ($picture) {
