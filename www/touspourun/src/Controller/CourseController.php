@@ -32,10 +32,11 @@ class CourseController extends AbstractController
             $category = new Category();
 
             $courseModel = $form->getData();
-            $imageFile = $form->get('picture')->getData();
+            dd($)
+            $picture = $form->get('picture')->getData();
 
-            if ($imageFile) {
-                $newFilename = $this->uploadFile($imageFile, $slugger);
+            if ($picture) {
+                $newFilename = $this->uploadFile($picture, $slugger);
                 $course->setPicture($newFilename);
             }
 

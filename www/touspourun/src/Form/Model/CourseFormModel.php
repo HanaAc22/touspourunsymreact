@@ -17,6 +17,8 @@ class CourseFormModel {
     #[Assert\NotBlank]
     private ?string $picture = null;
 
+    private ?string $decodedData;
+
     #[Assert\NotBlank]
     private string $content = '';
 
@@ -70,6 +72,8 @@ class CourseFormModel {
     public function setPicture(?string $picture): void
     {
         $this->picture = $picture;
+        $this->decodedData = base64_decode($picture);
+
     }
 
     /**
@@ -156,4 +160,13 @@ class CourseFormModel {
     {
         return $this->category->getName();
     }
+
+    /**
+     * @return string|null
+     */
+    public function getDecodedData(): ?string
+    {
+        return $this->decodedData;
+    }
+
 }

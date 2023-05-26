@@ -34,6 +34,7 @@ class Course
     private ?string $content = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'courses')]
+    #[ORM\JoinTable(name: "course_category")]
     private Collection $categories;
 
     #[ORM\Column]

@@ -41,8 +41,8 @@ final class CourseFactory extends ModelFactory implements DependentFixtureInterf
     {
         return [
             'content' => self::faker()->realText(),
-            'picture' => self::faker()->text(),
-            'title' => self::faker()->text(255),
+            'picture' => self::faker()->image('public/uploads/images/',400,300, null, false),
+            'title' => self::faker()->text(50),
             'createdAt' => DateTimeImmutable::createFromMutable(self::faker()->dateTime('now')),
         ];
     }

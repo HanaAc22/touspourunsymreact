@@ -9,12 +9,12 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import axios from "axios";
 
-export default function CourseForm() {
+export default function Course() {
     const [title, setTitle] = useState('');
     const [picture, setPicture] = useState('');
     const [content, setContent] = useState('');
     const [createdAt, setCreatedAt] = useState('')
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef('');
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -30,26 +30,28 @@ export default function CourseForm() {
         setCreatedAt(date);
     };
     const handleSubmit = (e) => {
-        const data = {
-            title: title,
-            picture: picture,
-            content: content,
-            createdAt: createdAt,
-        };
+
+        const data = new FormData();
+        data.append('title', title);
+        data.append('content', content);
+        data.append('createdAt', createdAt);
+        data.append('picture', picture);
+
+
         e.preventDefault();
         console.log('submit');
         axios.post('http://localhost:48000/api/courses', data)
-            .then((response) => {
-                console.log('Form Data submitted', response.data);
-                window.location.href = '/blog/show';
-            })
-            .catch((error) => {
-                console.error('Error submitting form data:', error);
-            })
+        .then((response) => {
+            console.log('Form Data submitted', response.data);
+            window.location.href = '/blog/show';
+        })
+        .catch((error) => {
+            console.error('Error submitting form data:', error);
+        })
     };
 
     return (
-        <div>
+        // <div>
             <Box
                 sx={{
                     display: 'flex',
@@ -80,7 +82,6 @@ export default function CourseForm() {
                         InputProps={{
                             endAdornment: (
                                 <Button
-                                    variant="contained"
                                     component="label"
                                     onClick={handleUploadButtonClick}
                                     sx={{
@@ -88,6 +89,9 @@ export default function CourseForm() {
                                         backgroundColor: '#1aae9f',
                                         color: '#fff',
                                         fontWeight: 'bold',
+                                            "&:hover": {
+                                               backgroundColor: '#0a453f',
+                                            }
                                     }}
                                 >
                                     Upload
@@ -112,6 +116,7 @@ export default function CourseForm() {
                         name="content"
                         variant="outlined"
                         multiline
+                        rows={8}
                         required
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
@@ -133,6 +138,6 @@ export default function CourseForm() {
                     </Button>
                 </form>
             </Box>
-        </div>
+        // </div>
     )
 }
