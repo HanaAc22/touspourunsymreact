@@ -1,8 +1,13 @@
 import React from 'react';
 
-export const Contact = () => {
+export default function Contact() {
     return (
-        <div>
+        <div className="red">
+            <h1>je suis une page contact</h1>
+            <h1>je suis une page contact</h1>
+            <h1>je suis une page contact</h1>
+            <h1>je suis une page contact</h1>
+            <h1>je suis une page contact</h1>
             <h1>je suis une page contact</h1>
         </div>
     );
