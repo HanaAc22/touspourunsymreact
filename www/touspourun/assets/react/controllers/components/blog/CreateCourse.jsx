@@ -2,14 +2,14 @@ import React, {useRef, useState} from 'react';
 import '../../../../styles/app.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import {Box} from "@mui/material";
+import {Box, Link} from "@mui/material";
 import {DemoContainer} from '@mui/x-date-pickers/internals/demo';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import axios from "axios";
 
-export default function Course() {
+export default function CreateCourse() {
     const [title, setTitle] = useState('');
     const [picture, setPicture] = useState('');
     const [content, setContent] = useState('');

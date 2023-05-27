@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 export default function Login() {
+    const [mail, setEmail] = useState('')
     const [credentials, setCredentials] = useState({
         login: '',
         password: '',
@@ -23,7 +24,7 @@ export default function Login() {
             <div className="group">
                 <label htmlFor="login">Email</label>
                 <input type="text" name="login" value={credentials.login} onChange={onChange}/>
-                <input type="text" id="username" name="last_username" value="{{ last_username }}" onChange={onChange}></input>
+                <input type="text" id="username" name="last_username" value={mail} onChange={(e) => setUserMail(e.target.value)}></input>
             </div>
             <div className="group">
                 <label htmlFor="password">Mot de passe</label>

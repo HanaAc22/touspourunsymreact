@@ -5,14 +5,14 @@
         <nav class="nav">
             <div class="container">
                 <div class="logo">
-                    <a href="#">TOUSPOURUN</a>
+                    <a href="#"><img src="../../../assets/images/logo.png" /></a>
                 </div>
                 <div class="main_list" id="mainListDiv">
                     <ul>
                         <li><a href="{{ path('app_main') }}">Accueil</a></li>
-                        <li><a href="{{ path('app_blog_show')}}">Cours</a></li>
+                        <li><a href="{{ path('app_blog_show') }}">Cours</a></li>
                         <li><a href="#">Forum</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
                         {% if app.user %}
                             <li><a href="{{ path('app_logout')}}" class="navbarBtn">Logout</a></li>
                         {% else %}

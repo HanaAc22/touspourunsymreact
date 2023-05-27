@@ -1,0 +1,94 @@
+.home a{
+    text-decoration: none;
+    font-style: none;
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+.home h1, .home h6, .home p{
+    color: var(--color-quaternary);
+}
+.containerHome{
+    /* padding-top: 150px; */
+    padding-bottom: 150px;
+}
+/**************Partie Who We Are************/
+.hwa{
+    width: 100%;
+    display: flex;
+    min-height: 600px;
+    align-items: center;
+    justify-content: center;
+}
+.hwa h1{
+    font-size: 48px;
+    margin: 40px 0;
+    text-align: left;
+    color: #053430;
+}
+.hwa .subtitle {
+    font-size: 16px;
+    color: var(--color-quaternary);
+    margin-top: 20px;
+    text-align: justify;
+    line-height: 25px;
+}
+.hwa a{
+    width: 220px;
+    font-size: 1.2rem;
+    padding: 15px;
+    margin: 20px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+.hwa .largeImage {
+    width: 100%;
+    height: auto;
+}
+
+/***************Partie cards*****************/
+.cardHome::before{
+    content: '';
+    display: block;
+    margin: 10px auto 80px;
+    width: 300px;
+    border: var(--color-quaternary) solid 1px;
+}
+.cardHome h2{
+    font-size: 38px;
+    margin: 25px;
+    color: #053430;
+    line-height: 1px;
+}
+.cardHome h6{
+    line-height: 1px;
+    font-size: 18px;
+}
+.cardHome img {
+    height: 250px;
+}
+.cardHome .card{
+    display: block;
+    margin: 10px auto;
+    padding: 0px !important;
+    max-width: 450px;
+}
+.cardHome .cards{
+    flex-wrap: wrap; 
+}
+.cardHome a{
+    width: 90px;
+    padding: 10px;
+    margin: 10px;
+}
+
+/*************Partie Responsive*********/
+@media (max-width:768px) {
+
+ 
+}
