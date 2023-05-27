@@ -1,34 +1,56 @@
-import { Button, Card, CardContent, Grid, TextField, Typography } from "@mui/material";
-import { validEmail } from "../../_utils/Regex";
 import React, { useState } from "react";
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { validEmail } from "../../_utils/Regex";
+import "../../../../styles/contact.css";
 
-const Contact1 = () => {
-    const [email, setEmail] = useState('');
-    const [emailErr, setEmailErr] = useState(false);
-    const validate = () => {
-     if (!validEmail.test(email)) {
-        setEmailErr(true);
-     }
+export default function Contact () {
+  const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState(false);
+  const validate = () => {
+    if (!validEmail.test(email)) {
+      setEmailErr(true);
+    }
   };
-    return (
-        <div>
-            <Card className="main">
+
+  return (
+    <div className="containerContact">
+      <Card className="main">
         <CardContent className="pres">
-          <Typography variant='h1' >Contactez nous</Typography>
-          <Typography variant='body' components='p'>
+          <Typography variant="h1">Contactez nous</Typography>
+          <Typography variant="body" components="p">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed
             explicabo eveniet autem eius eligendi animi sit sapiente minus
             beatae consectetur!
           </Typography>
-          <Typography > Rejoignez nous <a href='/authentification' >lien d'authentification</a> </Typography>
-          
+          <Typography>
+            {" "}
+            Rejoignez nous{" "}
+            <a href="/authentification">lien d'authentification</a>{" "}
+          </Typography>
         </CardContent>
         <CardContent className="formCont">
-          <Typography variant='h2'>Nous écrire</Typography>
-          {emailErr && <p style={{color: 'red', fontWeight:'bold', letterSpacing: 3, textTransform: 'uppercase'}}>Votre e-mail est invalide</p>}
-          <form action="#" >
+          <Typography variant="h2">Nous écrire</Typography>
+          {emailErr && (
+            <p
+              style={{
+                color: "red",
+                fontWeight: "bold",
+                letterSpacing: 3,
+                textTransform: "uppercase",
+              }}>
+              Votre e-mail est invalide
+            </p>
+          )}
+          <form action="#">
             <Grid container spacing={1}>
-              <Grid xs={12} sm={8} item >
+              <Grid xs={12} sm={8} item>
                 <TextField
                   label="Nom"
                   placeholder="Entrez votre nom"
@@ -66,7 +88,11 @@ const Contact1 = () => {
                 />
               </Grid>
               <Grid item>
-                <Button type="submit" variant="contain" className="btn-env" onClick={validate}>
+                <Button
+                  type="submit"
+                  variant="contain"
+                  className="btn-env"
+                  onClick={validate}>
                   Envoyer
                 </Button>
               </Grid>
@@ -74,8 +100,6 @@ const Contact1 = () => {
           </form>
         </CardContent>
       </Card>
-        </div>
-    );
+    </div>
+  );
 };
-
-export default Contact1;
