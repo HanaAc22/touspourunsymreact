@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 
 export default function Login() {
+    const [mail, setEmail] = useState('')
     const [credentials, setCredentials] = useState({
         login: '',
-        password: ''
+        password: '',
+        lastName: '',
     })
 
     const onChange = (e) => {
@@ -17,20 +19,21 @@ export default function Login() {
     }
 
     return (
-        <div>
-        <form onSubmit={onSubmit}>
+        <>
+        
             <div className="group">
                 <label htmlFor="login">Email</label>
                 <input type="text" name="login" value={credentials.login} onChange={onChange}/>
+                <input type="text" id="username" name="last_username" value={mail} onChange={(e) => setUserMail(e.target.value)}></input>
             </div>
             <div className="group">
                 <label htmlFor="password">Mot de passe</label>
                 <input type="text" name="password" value={credentials.password} onChange={onChange}/>
+                <input type="text" name="_csrf_token" value="{{ csrf_token('authenticate') }}"></input>
             </div>
             <div className="group">
                 <button type="submit">Connexion</button>
             </div>
-        </form>
-        </div>
+        </>
     );
 }

@@ -1,0 +1,44 @@
+.contact{
+    border: none;
+    background: #1aae9f;
+    padding: 20px;
+    height: 100%;
+}
+.main div {
+    display: block;
+    margin: auto;
+}
+.contact h1 {
+    font-size: 38px;
+    color: #053430;
+}
+.contact h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #053430;
+}
+.contact .btn-env{
+    background: #1aae9f !important;
+    color: white !important;
+    border: solid 1px white !important; 
+    width: 150px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+.btn-env:hover{
+    background-color: white;
+    color: #1aae9f;
+    border: #1aae9f solid 1px;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+.formCont {
+    max-width: 950px;
+    height:85vh;
+}
+.pres{
+    margin: 20px 0px !important;
+}
+.pres h1{
+    margin: 20px 0;
+}

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Course;
 use App\Form\CourseType;
 use App\Trait\PictureExtentionTrait;
@@ -30,37 +29,27 @@ class CourseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $course = new Course();
 
-            $imageFile = $form->get('picture')->getData();
+            $courseModel = $form->getData();
+            $picture = $form->get('picture')->getData();
 
-            if ($imageFile) {
-                $newFilename = $this->uploadFile($imageFile, $slugger);
+            if ($picture) {
+                $newFilename = $this->uploadFile($picture, $slugger);
                 $course->setPicture($newFilename);
             }
 
-            $title = $form->get('title')->getData();
-            if (!empty($title)) {
-                $course->setTitle($title);
-            } else {
-                throw new Exception('Title cannot be empty.');
-            }
-
-            $course->setContent($form->get('content')->getData());
-            $course->setCreatedAt(new \DateTimeImmutable($form->get('createdAt')->getData()));
-
-            $entityManager->persist($course);
-            $entityManager->flush();
+            return $this->redirectToRoute('app_main');
         }
+        return $this->render('course/createCourse.html.twig', [
+            'contentCreateForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/update/{id}', name: '_update')]
+    public  function edit(): Response
+    {
         return $this->render('course/createCourse.html.twig', [
 
         ]);
     }
 
-    #[Route('/update/{id}', name: '_update',)]
-
-    public  function edit(): Response
-    {
-        return $this->render('courses/course_content/updateContent.html.twig',[
-
-        ]);
-    }
 }

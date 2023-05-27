@@ -31,7 +31,7 @@ class CourseFormModel {
     private Collection $categories;
 
     private readonly Category $category;
-    private string $name;
+    //private string $name;
 
     public function __construct(?Course $course = null)
     {
