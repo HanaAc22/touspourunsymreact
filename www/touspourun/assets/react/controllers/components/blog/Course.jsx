@@ -27,20 +27,24 @@ export default function Course() {
     };
 
     const handleDateChange = (date) => {
-        setCreatedAt(date);
+          setCreatedAt(date);
     };
     const handleSubmit = (e) => {
 
-        const data = new FormData();
-        data.append('title', title);
-        data.append('content', content);
-        data.append('createdAt', createdAt);
-        data.append('picture', picture);
+        const data = {
+            title: title,
+            content: content,
+            createdAt: createdAt,
+            picture: picture
+        };
 
 
         e.preventDefault();
-        console.log('submit');
-        axios.post('http://localhost:48000/api/courses', data)
+        axios.post('http://localhost:48000/api/courses', data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
         .then((response) => {
             console.log('Form Data submitted', response.data);
             window.location.href = '/blog/show';
@@ -72,39 +76,10 @@ export default function Course() {
                         onChange={(e) => setTitle(e.target.value)}
                     />
 
-                    <TextField
-                        margin="normal"
-                        label="Picture"
-                        name="picture"
-                        fullWidth
-                        variant="outlined"
-                        value={picture}
-                        InputProps={{
-                            endAdornment: (
-                                <Button
-                                    component="label"
-                                    onClick={handleUploadButtonClick}
-                                    sx={{
-                                        borderRadius: 0,
-                                        backgroundColor: '#1aae9f',
-                                        color: '#fff',
-                                        fontWeight: 'bold',
-                                            "&:hover": {
-                                               backgroundColor: '#0a453f',
-                                            }
-                                    }}
-                                >
-                                    Upload
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        ref={fileInputRef}
-                                        style={{ display: 'none' }}
-                                        onChange={handleFileInputChange}
-                                    />
-                                </Button>
-                            ),
-                        }}
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileInputChange}
                     />
 
                     <TextField

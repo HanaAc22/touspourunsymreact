@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -86,7 +85,7 @@ export default function Album() {
                                         src={item.picture}
                                         alt={"image-cours"}
                                     />
-                                    <CardContent sx={{ flexGrow: 1 }}>
+                                    <CardContent sx={{ flexGrow: 1 }}>²
                                         <Typography gutterBottom variant="h5" component="h2">{item.title}</Typography>
                                         <Typography>{item.content}</Typography>
                                         <Typography>{new Date(item.createdAt).toLocaleDateString('fr-FR', {

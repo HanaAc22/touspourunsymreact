@@ -2,17 +2,15 @@
 
 namespace App\Controller;
 
-use App\Command\CourseCommand;
-use App\Entity\Category;
+
 use App\Entity\Course;
 use App\Form\CourseType;
-use App\Form\Model\CourseFormModel;
 use App\Trait\PictureExtentionTrait;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -20,49 +18,17 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class CourseController extends AbstractController
 {
     use PictureExtentionTrait;
-    #[Route('/create', name: 'create')]
-    public function create(SluggerInterface $slugger, Request $request, MessageBusInterface $messageBus): Response
+    /**
+     * @throws Exception
+     */
+    #[Route('/create', name: 'create', methods: ['GET', 'POST'])]
+    public function create(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger ): Response
     {
         $form = $this->createForm(CourseType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $course = new Course();
-            $category = new Category();
-
-            $courseModel = $form->getData();
-            dd($)
-            $picture = $form->get('picture')->getData();
-
-            if ($picture) {
-                $newFilename = $this->uploadFile($picture, $slugger);
-                $course->setPicture($newFilename);
-            }
-
-            $messageBus->dispatch(new CourseCommand($course, $courseModel, $category));
-
-            return $this->redirectToRoute('app_main');
-        }
-        return $this->render('course/createCourse.html.twig', [
-            'contentCreateForm' => $form->createView(),
-        ]);
-    }
-
-    #[Route('/update/{id}', name: '_update')]
-    public  function edit($id, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger ,MessageBusInterface $messageBus): Response
-    {
-        $course = $entityManager->getRepository(Course::class)->find($id);
-
-        $courseModel = new CourseFormModel($course);
-        $caregory = new Category();
-
-        $form = $this->createForm(CourseType::class, $courseModel);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $form->getData();
 
             $imageFile = $form->get('picture')->getData();
 
@@ -71,13 +37,30 @@ class CourseController extends AbstractController
                 $course->setPicture($newFilename);
             }
 
-            $messageBus->dispatch(new CourseCommand($course, $courseModel, $caregory));
+            $title = $form->get('title')->getData();
+            if (!empty($title)) {
+                $course->setTitle($title);
+            } else {
+                throw new Exception('Title cannot be empty.');
+            }
 
-            return new Response('course created with success');
+            $course->setContent($form->get('content')->getData());
+            $course->setCreatedAt(new \DateTimeImmutable($form->get('createdAt')->getData()));
+
+            $entityManager->persist($course);
+            $entityManager->flush();
         }
+        return $this->render('course/createCourse.html.twig', [
 
+        ]);
+    }
+
+    #[Route('/update/{id}', name: '_update',)]
+
+    public  function edit(): Response
+    {
         return $this->render('courses/course_content/updateContent.html.twig',[
-            'updateContentForm' => $form->createView(),
+
         ]);
     }
 }
