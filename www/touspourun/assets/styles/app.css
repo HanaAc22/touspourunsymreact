@@ -3,6 +3,7 @@
     --color-secondary: #0a453f;
     --color-tertiary: #D1EFECff;
     --color-quaternary : #053430;
+    --color-errormsg : red;
 }
 *{
     margin: 0;

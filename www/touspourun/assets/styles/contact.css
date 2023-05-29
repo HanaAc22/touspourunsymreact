@@ -1,34 +1,50 @@
-.contact{
-    border: none;
-    background: #1aae9f;
-    padding: 20px;
-    height: 100%;
-}
 .main div {
     display: block;
     margin: auto;
 }
-.contact h1 {
+.pres h1 {
     font-size: 38px;
-    color: #053430;
+    color: var(--color-quaternary);
+    margin: 20px 0;
+    text-align: center;
 }
-.contact h2 {
+.pres{
+    margin: 90px 50px !important;
+    border: var(--color-primary) solid 2px;
+    border-radius: 10px;
+    display: block;
+    padding: 20px;
+}
+.pres a{
+    font-weight: bolder;
+    font-style: none;
+    text-transform: uppercase;
+    /* text-decoration: none; */
+    /* margin: 20px; */
+    text-align: center;
+    margin: 15px auto;
+    color: var(--color-quaternary);
+    display: block;
+}
+.formCont h2 {
     font-size: 34px;
     margin-bottom: 10px;
-    color: #053430;
+    color: var(--color-quaternary);
+    text-align: center;
 }
-.contact .btn-env{
-    background: #1aae9f !important;
+.formCont .btn-env{
+    background: var(--color-primary) !important;
     color: white !important;
     border: solid 1px white !important; 
     width: 150px;
-    margin-top: 20px;
+    margin: 20px auto;
     font-size: 16px;
+    display: block;
 }
 .btn-env:hover{
     background-color: white;
-    color: #1aae9f;
-    border: #1aae9f solid 1px;
+    color: var(--color-primary);
+    border: var(--color-primary) solid 1px;
     font-size: 1.2rem;
     padding: 5px;
 }
@@ -36,9 +52,19 @@
     max-width: 950px;
     height:85vh;
 }
-.pres{
-    margin: 20px 0px !important;
+.formCont p{
+    text-align: center;
+    margin: 4px;
+    color: var(--color-errormsg);
+    font-weight: bold;
+    letter-spacing: 3;
+    text-transform: uppercase;
 }
-.pres h1{
-    margin: 20px 0;
+.formCont .validForm{
+    text-align: center;
+    margin: 4px;
+    color: var(--color-primary);
+    font-weight: bold;
+    letter-spacing: 3;
+    text-transform: uppercase;
 }
