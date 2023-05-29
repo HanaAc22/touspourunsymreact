@@ -85,7 +85,8 @@ const Contact1 = () => {
             <p>Merci de renseigner correctement votre message</p>)}
           {validForm && (
             <p className="validForm">Votre message est bien envoyé ✅. Nous vous contacterons dès que possible 🙂</p>)}
-          <form action="#">
+          
+          <form action="/conatc" method="post">
             <Grid container spacing={1}>
               <Grid xs={12} sm={8} item>
               <RadioGroup name="gender" className="gender" value={value} onChange={handleChange}>

@@ -8,6 +8,14 @@
     margin-bottom: 30px;
     text-align: center;
 }
+.error p{
+    text-align: center;
+    margin: 4px;
+    color: var(--color-errormsg);
+    font-weight: bold;
+    letter-spacing: 3;
+    text-transform: uppercase;
+}
 .loginContainer form{
     padding: 10px 50px;
     margin-top: 20px;

@@ -9,7 +9,7 @@
         {% if error %}
             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
-            <div {{ react_component('components/login/Login') }}></div>
+        
             <div {{ react_component('pages/admin/Login') }}></div>
 
         {# <div {{ react_component('pages/admin/Login') }}></div>
