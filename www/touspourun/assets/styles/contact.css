@@ -47,6 +47,7 @@
     border: var(--color-primary) solid 1px;
     font-size: 1.2rem;
     padding: 5px;
+    height: 40px;
 }
 .formCont {
     max-width: 950px;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../../../styles/login.css";
-import { validEmail, validNameRgex, validMsgRgex, validPassword } from "../../_utils/Regex";
+import { validEmail, validNameRgex, validPassword } from "../../_utils/Regex";
 
 export default function Login() {
   let token ;
@@ -12,25 +12,27 @@ export default function Login() {
   const [value, setValue] = useState('');
 
   const onSubmit = (e) => {
+    let token;
     e.preventDefault();
+
     if (userName == "" || !validNameRgex.test(userName)) {
       setUserNameErr(true);  
     }
     if (validNameRgex.test(userName)) {
       setUserNameErr(false);  
     }
-      if (!validEmail.test(email)) {
-        setMsg(true);
-      }
-      if (validEmail.test(email)) {
-        setMsg(false);  
-      }
-      if (!validPassword.test(password)) {
-        setMsg(true);
-      }
-      if (validPassword.test(password)) {
-        setMsg(false);  
-      }
+    if (!validEmail.test(email)) {
+      setMsg(true);
+    }
+    if (validEmail.test(email)) {
+      setMsg(false);  
+    }
+    if (!validPassword.test(password)) {
+      setMsg(true);
+    }
+    if (validPassword.test(password)) {
+      setMsg(false);  
+    }
 
 
     try {
