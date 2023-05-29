@@ -68,3 +68,6 @@
     letter-spacing: 3;
     text-transform: uppercase;
 }
+.formCont .gender{
+    color: var(--color-quaternary);
+}

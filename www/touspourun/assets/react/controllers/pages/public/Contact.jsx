@@ -88,7 +88,7 @@ const Contact1 = () => {
           <form action="#">
             <Grid container spacing={1}>
               <Grid xs={12} sm={8} item>
-              <RadioGroup name="gender" value={value} onChange={handleChange}>
+              <RadioGroup name="gender" className="gender" value={value} onChange={handleChange}>
                     <FormControlLabel value="female" control={<Radio />} label="M." />
                     <FormControlLabel value="male" control={<Radio />} label="Mme" />
                     <FormControlLabel value="other" control={<Radio />} label="Ne pas se prononcer" />
