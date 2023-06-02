@@ -7,9 +7,9 @@ import {
   Typography,
 } from "@mui/material";
 import "../../../../styles/contact.css";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import { validEmail, validNameRgex, validMsgRgex } from "../../_utils/Regex";
 import React, { useState } from "react";
 
@@ -22,35 +22,42 @@ const Contact1 = () => {
   const [emailErr, setEmailErr] = useState(false);
   const [msg, setMsg] = useState("");
   const [msgErr, setMsgErr] = useState(false);
-  const [validForm, setValidForm] = useState(false)
-  const [value, setValue] = useState('');
+  const [validForm, setValidForm] = useState(false);
+  const [value, setValue] = useState("");
 
   const validate = () => {
     if (!validEmail.test(email)) {
       setEmailErr(true);
     }
     if (validEmail.test(email)) {
-      setEmailErr(false);  
+      setEmailErr(false);
     }
     if (!validNameRgex.test(firstName)) {
-      setFirstNameErr(true);  
+      setFirstNameErr(true);
     }
     if (firstName == "" || validNameRgex.test(firstName)) {
-      setFirstNameErr(false);  
+      setFirstNameErr(false);
     }
     if (name == "" || !validNameRgex.test(name)) {
-      setNameErr(true) 
+      setNameErr(true);
     }
     if (name != "" && validNameRgex.test(name)) {
-      setNameErr(false) 
+      setNameErr(false);
     }
-    if(msg == "" || !validMsgRgex.test(msg)){
+    if (msg == "" || !validMsgRgex.test(msg)) {
       setMsgErr(true);
     }
-    if(msg != "" && validMsgRgex.test(msg)){
+    if (msg != "" && validMsgRgex.test(msg)) {
       setMsgErr(false);
     }
-    if ((msg != "" && validMsgRgex.test(msg)) && (name != "" && validNameRgex.test(name)) && (firstName == "" || validNameRgex.test(firstName) && (validEmail.test(email)))  ) {
+    if (
+      msg != "" &&
+      validMsgRgex.test(msg) &&
+      name != "" &&
+      validNameRgex.test(name) &&
+      (firstName == "" ||
+        (validNameRgex.test(firstName) && validEmail.test(email)))
+    ) {
       setValidForm(true);
     }
   };
@@ -70,31 +77,46 @@ const Contact1 = () => {
             beatae consectetur!
           </Typography>
           <Typography>
-          <a href="/login"> Rejoignez nous !</a>
+            <a href="/login"> Rejoignez nous !</a>
           </Typography>
         </CardContent>
         <CardContent className="formCont">
           <Typography variant="h2">Nous écrire</Typography>
-          {nameErr && (
-            <p>Merci de renseigner correctement votre nom</p>)}
-          {firstNameErr && (
-            <p>Merci de renseigner correctement votre prénom</p>)}
-          {emailErr && (
-            <p>Votre e-mail est invalide</p>)}
-          {msgErr && (
-            <p>Merci de renseigner correctement votre message</p>)}
+          {nameErr && <p>Merci de renseigner correctement votre nom</p>}
+          {firstNameErr && <p>Merci de renseigner correctement votre prénom</p>}
+          {emailErr && <p>Votre e-mail est invalide</p>}
+          {msgErr && <p>Merci de renseigner correctement votre message</p>}
           {validForm && (
-            <p className="validForm">Votre message est bien envoyé ✅. Nous vous contacterons dès que possible 🙂</p>)}
-          
+            <p className="validForm">
+              Votre message est bien envoyé ✅. Nous vous contacterons dès que
+              possible 🙂
+            </p>
+          )}
+
           <form action="/contact" method="post">
             <Grid container spacing={1}>
               <Grid xs={12} sm={8} item>
-              <RadioGroup name="gender" className="gender" value={value} onChange={handleChange}>
-                    <FormControlLabel value="female" control={<Radio />} label="M." />
-                    <FormControlLabel value="male" control={<Radio />} label="Mme" />
-                    <FormControlLabel value="other" control={<Radio />} label="Ne pas se prononcer" />
+                <RadioGroup
+                  name="gender"
+                  className="gender"
+                  value={value}
+                  onChange={handleChange}>
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="M."
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Mme"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Ne pas se prononcer"
+                  />
                 </RadioGroup>
-                
               </Grid>
               <Grid xs={12} sm={8} item>
                 <TextField
@@ -158,4 +180,3 @@ const Contact1 = () => {
 };
 
 export default Contact1;
->>>>>>> sarah

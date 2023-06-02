@@ -14,7 +14,7 @@
                         <li><a href="#">Forum</a></li>
                         <li><a href="{{ path('app_contact') }}">Contact</a></li>
                         {% if app.user %}
-                        <li><a href="{{ path('app_logout')}}" class="navbarBtn">Logout</a></li>
+                            <li><a href="{{ path('app_logout')}}" class="navbarBtn">Logout</a></li>
                         {% else %}
                             <li><a href="{{ path('app_register')}}" class="navbarBtn">Sign In</a></li>
                             <li><a href="{{ path('app_login')}}" class="navbarBtn">Log In</a></li>
