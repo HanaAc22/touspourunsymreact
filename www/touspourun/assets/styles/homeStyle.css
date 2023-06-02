@@ -28,7 +28,7 @@
     font-size: 48px;
     margin: 40px 0;
     text-align: left;
-    color: #053430;
+    color: var(--color-quaternary);
 }
 .hwa .subtitle {
     font-size: 16px;
