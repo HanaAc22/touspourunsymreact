@@ -105,6 +105,7 @@ button{
     background-color: var(--color-primary);
     color: var(--color-tertiary);
     margin: 20px auto;
+    cursor: pointer;
 }
 
 
