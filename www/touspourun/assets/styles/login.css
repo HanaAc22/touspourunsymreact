@@ -1,0 +1,126 @@
+.loginContainer {
+    padding: 100px;
+    border: var(--color-primary) solid 2px;
+    color: var(--color-quaternary);
+    height: 100vh;
+}
+.loginContainer h1{
+    margin-bottom: 30px;
+    text-align: center;
+}
+.error p{
+    text-align: center;
+    margin: 4px;
+    color: var(--color-errormsg);
+    font-weight: bold;
+    letter-spacing: 3;
+    text-transform: uppercase;
+}
+.loginContainer form{
+    padding: 10px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: var(--color-primary) solid 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
+.loginContainer .group{
+    margin: 2px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+.loginContainer form input{
+    min-width: 400px;
+    border: var(--color-primary) solid 2px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.loginContainer form .storage{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 4px auto;
+    padding: 5px;
+    min-width: 200px;
+}
+.loginContainer form .storage input{
+    margin: 0 !important;
+}
+.loginContainer form .storage input {
+    /* width: 20px;
+    height: 20px; */
+    max-width: 20px !important;
+    min-width: 20px !important;
+
+}
+
+.subscribe label, a  {
+    font-style: none;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-decoration: none;
+    /* margin: 20px; */
+    text-align: left;
+    margin: 5px;
+}
+
+.subscribe #statut{
+    margin-top: 20px;
+    height: 35px;
+    width: 300px;
+    padding: 5px;
+    border: var(--color-primary) solid 1px;
+}
+.left{
+    text-align: left;
+    margin: 5px;
+    color: var(--color-quaternary);
+}
+label{
+    text-align: left;
+    margin: 5px;
+    color: var(--color-quaternary);
+}
+form input {
+    border: var(--color-primary) solid 1px;
+    border-radius: 2px;
+    height: 35px;
+    padding: 5px;
+    margin: 5px;
+
+}
+
+
+button{
+    display: block;
+    border-radius: 3px;
+    height: 35px;
+    width: 150px;
+    font-size: 1.1rem;
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+
+/* Partie responsive */
+/* smartphone */
+@media screen and (max-width: 767px){
+    .authentication{
+        flex-direction: column;
+    }
+}
+/* ne fonctionne pas \(ToT)/ */
+/* tablet */
+@media screen and (max-width: 1023){
+    .authentication{
+        flex-direction: column;
+        padding: 20px;
+    }
+}
