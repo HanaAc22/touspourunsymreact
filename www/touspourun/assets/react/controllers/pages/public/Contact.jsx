@@ -7,13 +7,14 @@ import {
   Typography,
 } from "@mui/material";
 import "../../../../styles/contact.css";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import { validEmail, validNameRgex, validMsgRgex } from "../../_utils/Regex";
 import React, { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
-const Contact1 = () => {
+const Contact = () => {
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -22,27 +23,28 @@ const Contact1 = () => {
   const [emailErr, setEmailErr] = useState(false);
   const [msg, setMsg] = useState("");
   const [msgErr, setMsgErr] = useState(false);
-  const [validForm, setValidForm] = useState(false)
-  const [value, setValue] = useState('');
+  const [validForm, setValidForm] = useState(false);
+  const [value, setValue] = useState("");
+  const [verified, setVerified] = useState(false);
 
   const validate = () => {
     if (!validEmail.test(email)) {
       setEmailErr(true);
     }
     if (validEmail.test(email)) {
-      setEmailErr(false);  
+      setEmailErr(false);
     }
     if (!validNameRgex.test(firstName)) {
-      setFirstNameErr(true);  
+      setFirstNameErr(true);
     }
     if (firstName == "" || validNameRgex.test(firstName)) {
-      setFirstNameErr(false);  
+      setFirstNameErr(false);
     }
     if (name == "" || !validNameRgex.test(name)) {
-      setNameErr(true) 
+      setNameErr(true)
     }
     if (name != "" && validNameRgex.test(name)) {
-      setNameErr(false) 
+      setNameErr(false)
     }
     if(msg == "" || !validMsgRgex.test(msg)){
       setMsgErr(true);
@@ -58,10 +60,14 @@ const Contact1 = () => {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setVerified(true)
+  }
 
   return (
-    <div>
-      <Card className="main">
+    <div className="contactComponent">
+      <Card id="main">
         <CardContent className="pres">
           <Typography variant="h1">Contactez nous</Typography>
           <Typography variant="body" components="p">
@@ -70,7 +76,7 @@ const Contact1 = () => {
             beatae consectetur!
           </Typography>
           <Typography>
-          <a href="/login"> Rejoignez nous !</a>
+            <a href="/login"> Rejoignez nous !</a>
           </Typography>
         </CardContent>
         <CardContent className="formCont">
@@ -94,7 +100,6 @@ const Contact1 = () => {
                     <FormControlLabel value="male" control={<Radio />} label="Mme" />
                     <FormControlLabel value="other" control={<Radio />} label="Ne pas se prononcer" />
                 </RadioGroup>
-                
               </Grid>
               <Grid xs={12} sm={8} item>
                 <TextField
@@ -141,12 +146,17 @@ const Contact1 = () => {
                 />
               </Grid>
               <Grid item>
+                <ReCAPTCHA
+                    sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
+                    onChange={onChange}
+                />
                 <Button
                   type="submit"
                   variant="contain"
                   className="btn-env"
                   onClick={validate}>
                   Envoyer
+                  disabled={verified}
                 </Button>
               </Grid>
             </Grid>
@@ -157,4 +167,4 @@ const Contact1 = () => {
   );
 };
 
-export default Contact1;
+export default Contact;

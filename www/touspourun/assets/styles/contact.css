@@ -1,4 +1,8 @@
-.main div {
+#main{
+    padding-top: 40px;
+    padding-bottom: 150px;
+}
+#main div {
     display: block;
     margin: auto;
 }
@@ -58,7 +62,7 @@
     margin: 4px;
     color: var(--color-errormsg);
     font-weight: bold;
-    letter-spacing: 3;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 .formCont .validForm{
@@ -66,9 +70,25 @@
     margin: 4px;
     color: var(--color-primary);
     font-weight: bold;
-    letter-spacing: 3;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 .formCont .gender{
     color: var(--color-quaternary);
+}
+
+@media screen and (max-width: 768px) and (max-width: 1024px) {
+    #main{
+        height: 100%;
+        padding-top: 150px;
+        padding-bottom: 150px;
+    }
+    .pres{
+        margin: 10px !important;
+        padding: 5px;
+    }
+    .pres a{
+        text-align: center;
+    }
+
 }

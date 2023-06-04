@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../../../styles/login.css";
+import ReCAPTCHA from "react-google-recaptcha";
 import { validEmail, validNameRgex, validPassword } from "../../_utils/Regex";
 
 export default function Login() {
@@ -10,10 +11,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [msgErr, setMsg] = useState(false);
   const [value, setValue] = useState("");
-
+  const [verified, setVerified] = useState(false);
   const onSubmit = (e) => {
-    let token;
+
     //e.preventDefault();
+
 
     // if (userName == "" || !validNameRgex.test(userName)) {
     //   setUserNameErr(true);
@@ -34,11 +36,9 @@ export default function Login() {
     //   setMsg(false);
     // }
 
-    try {
-      localStorage.setItem("token", token);
-      console.log(token);
-    } catch (error) {
-      console.log(error);
+    function onChange(value) {
+      console.log("Captcha value:", value);
+      setVerified(true)
     }
   };
 
@@ -80,7 +80,11 @@ export default function Login() {
         <div className="group">
           {/* ligne non fonctionnelle */}
           {/* <input type="hidden" name="app_profile" value="/profile" />  */}
-          <button type="submit" onClick={onSubmit}>
+          <ReCAPTCHA
+              sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
+              onChange={onChange}
+          />
+          <button type="submit" onClick={onSubmit} disabled={verified}>
             Connexion
           </button>
         </div>
