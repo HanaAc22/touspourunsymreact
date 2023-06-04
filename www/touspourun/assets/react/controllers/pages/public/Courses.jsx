@@ -39,33 +39,34 @@ export default function Courses() {
         </Container>
 
         <Container className="cardsCourses" sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {data.map((item) => (
-              <Grid item xs={12} sm={6} md={4}>
+              <Grid item xs={12} sm={6} md={4} >
                 <Card
+                  key={item.id}
+                  id={item.id}
                   className="cardCours"
                   sx={{
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
-                  key={data.id}>
-                  <img src={item.picture} alt={item.title} />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h6">
-                      {item.title}
-                    </Typography>
-                    <Typography paragraph>{item.content}</Typography>
-                    <Typography style={{ textAlign: "end" }}>
-                      {new Date(item.createdAt).toLocaleDateString("fr-FR", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </Typography>
-                  </CardContent>
-                  <Link size="small">CONSULTER</Link>
+                  >
+                    <img src={item.picture} alt={item.title} />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h6">
+                        {item.title}
+                      </Typography>
+                      <Typography paragraph>{item.content}</Typography>
+                      <Typography style={{ textAlign: "end" }}>
+                        {new Date(item.createdAt).toLocaleDateString("fr-FR", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </Typography>
+                    </CardContent>
+                    <Link size="small">CONSULTER</Link>
                 </Card>
               </Grid>
             ))}

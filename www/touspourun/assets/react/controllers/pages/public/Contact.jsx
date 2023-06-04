@@ -12,7 +12,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { validEmail, validNameRgex, validMsgRgex } from "../../_utils/Regex";
 import React, { useState } from "react";
-const Contact1 = () => {
+const Contact = () => {
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -178,5 +178,4 @@ const Contact1 = () => {
   );
 };
 
-export default Contact1;
->>>>>>> main
+export default Contact;

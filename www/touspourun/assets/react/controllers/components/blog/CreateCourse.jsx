@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import '../../../../styles/app.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import {Box, Link} from "@mui/material";
+import {Box} from "@mui/material";
 import {DemoContainer} from '@mui/x-date-pickers/internals/demo';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
@@ -55,7 +55,6 @@ export default function CreateCourse() {
     };
 
     return (
-        // <div>
             <Box
                 sx={{
                     display: 'flex',
@@ -106,13 +105,11 @@ export default function CreateCourse() {
                                 />
                             </DemoContainer>
                         </LocalizationProvider>
-                    {/* Add additional form fields as needed */}
 
                     <Button type="submit" fullWidth className="customButton" variant="contained"   sx={{ mt: 3, mb: 2 }}>
                         Submit
                     </Button>
                 </form>
             </Box>
-        // </div>
     )
 }
