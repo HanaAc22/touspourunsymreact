@@ -19,7 +19,7 @@ trait PictureExtentionTrait {
 
         try {
             $file->move(
-                $this->getParameter('kernel.project_dir') . 'images_directory',
+                $this->getParameter('kernel.project_dir') . '/public/uploads/images',
                 $newFilename,
             );
         } catch (FileException $e) {

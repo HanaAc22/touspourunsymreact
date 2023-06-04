@@ -3,16 +3,34 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use App\Controller\CourseController;
 use App\Repository\CourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ApiResource( normalizationContext: [ 'groups' => ['course:read'] ],
-               denormalizationContext: [ 'groups' => ['course:write'] ],
+
+#[ApiResource(
+    operations: [
+        new Get(),
+        new Post(controller: CourseController::class, deserialize: false),
+        new GetCollection(),
+        new Put(),
+        new Delete(),
+    ],
+    normalizationContext: [ 'groups' => ['course:read'], ['course_create:read'] ],
+    denormalizationContext: [ 'groups' => ['course:write'] ]
 )]
+
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
 class Course
 {
@@ -77,6 +95,27 @@ class Course
 
         return $this;
     }
+
+    /**
+     * @return File|null
+     */
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param File|null $file
+     */
+    public function setFile(?File $file): void
+    {
+        $this->file = $file;
+        if (null !== $file) {
+
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
 
     public function getContent(): ?string
     {

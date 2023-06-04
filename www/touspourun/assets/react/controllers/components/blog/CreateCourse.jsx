@@ -15,6 +15,7 @@ export default function CreateCourse() {
     const [content, setContent] = useState('');
     const [createdAt, setCreatedAt] = useState('')
     const fileInputRef = useRef('');
+
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -30,28 +31,27 @@ export default function CreateCourse() {
           setCreatedAt(date);
     };
     const handleSubmit = (e) => {
-
-        const data = {
-            title: title,
-            content: content,
-            createdAt: createdAt,
-            picture: picture
-        };
-
-
         e.preventDefault();
-        axios.post('http://localhost:48000/api/courses', data, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => {
-            console.log('Form Data submitted', response.data);
-            window.location.href = '/blog/show';
-        })
-        .catch((error) => {
-            console.error('Error submitting form data:', error);
-        })
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+        formData.append('picture', fileInputRef.current.files[0]);
+        formData.append('createdAt', createdAt);
+
+        axios
+            .post('http://localhost:48000/api/courses', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then((response) => {
+                console.log('Form Data submitted', response.data);
+                window.location.href = '/blog/show';
+            })
+            .catch((error) => {
+                console.error('Error submitting form data:', error);
+            });
     };
 
     return (
@@ -79,6 +79,8 @@ export default function CreateCourse() {
                         type="file"
                         accept="image/*"
                         onChange={handleFileInputChange}
+                        ref={fileInputRef}
+                        name="picture"
                     />
 
                     <TextField
