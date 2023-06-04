@@ -1,6 +1,5 @@
 .loginContainer {
     padding: 100px;
-    border: var(--color-primary) solid 2px;
     color: var(--color-quaternary);
     height: 100vh;
 }
@@ -13,7 +12,7 @@
     margin: 4px;
     color: var(--color-errormsg);
     font-weight: bold;
-    letter-spacing: 3;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 .loginContainer form{

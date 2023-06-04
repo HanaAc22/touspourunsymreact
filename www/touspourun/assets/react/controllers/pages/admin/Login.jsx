@@ -36,10 +36,10 @@ export default function Login() {
     //   setMsg(false);
     // }
 
-    function onChange(value) {
-      console.log("Captcha value:", value);
-      setVerified(true)
     }
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setVerified(true)
   };
 
   return (
