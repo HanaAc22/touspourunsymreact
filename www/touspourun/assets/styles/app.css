@@ -168,52 +168,6 @@
     font-weight: 700;
 }
 
-
-
-
-/* .heroCardsBox {
-    width: 100%;
-    display: flex;
-    min-height: 600px;
-    align-items: center;
-    justify-content: center;
-}
-
-.heroServicesBox {
-    width: 100%;
-    min-height: 400px;
-    background-color: var(--color-primary) ;
-    margin-top: 50px;
-} */
-
-/* .servicesTitle {
-    padding: 50px;
-}
-
-.heroServicesImg {
-    width: 100px;
-    height: 100px;
-}
-
-.servicesDetails {
-    display: flex;
-    padding: 5px;
-}
-
-.servicesGrid {
-    max-width: 350px;
-    padding-left: 40px;
-    display: flex;
-}
-
-.servicesDiv {
-    padding-left: 20px;
-}
-
-.btnContained {
-    background-color: var(--color-primary);
-} */
-
 /* Media query section */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 

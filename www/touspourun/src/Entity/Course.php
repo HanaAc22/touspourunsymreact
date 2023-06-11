@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Controller\CourseController;
+use App\Controller\ShowCourseController;
 use App\Repository\CourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,8 +27,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new Put(),
         new Delete(),
     ],
-    normalizationContext: [ 'groups' => ['course:read'], ['course_create:read'] ],
-    denormalizationContext: [ 'groups' => ['course:write'] ]
+    normalizationContext: [ 'groups' => ['course:read'], ['course_create:read'], ['course_show_id:read'] ],
+    denormalizationContext: [ 'groups' => ['course:write'] ],
 )]
 
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
@@ -38,7 +39,7 @@ class Course
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     #[Groups(['course:read', 'course:write'])]
     private ?string $title = null;
 
@@ -52,6 +53,7 @@ class Course
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'courses')]
     #[ORM\JoinTable(name: "course_category")]
+    #[Groups(['course:read', 'course:write'])]
     private Collection $categories;
 
     #[ORM\Column]
@@ -140,6 +142,7 @@ class Course
     {
         if (!$this->categories->contains($category)) {
             $this->categories->add($category);
+            $category->addCourse($this);
         }
 
         return $this;
@@ -148,6 +151,7 @@ class Course
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+        $category->addCourse($this);
 
         return $this;
     }

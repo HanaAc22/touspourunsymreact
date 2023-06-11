@@ -1,6 +1,5 @@
 import * as React from "react";
 import "../../../../styles/blogCours.css";
-import { Link } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
@@ -9,12 +8,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import {Link, Route} from "react-router-dom";
 
 export default function Courses() {
   const [data, setData] = useState([]);
   const apiUrl = "http://localhost:48000/api";
-
 
   useEffect(() => {
     axios
@@ -48,10 +46,9 @@ export default function Courses() {
         <Container className="cardsCourses" sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
             {data.map((item) => (
-              <Grid item xs={12} sm={6} md={4} >
+              <Grid  item key={item.id} xs={12} sm={6} md={4} >
                 <Card
-                  key={item.id}
-                  id={item.id}
+
                   className="cardCours"
                   sx={{
                     height: "100%",
@@ -64,6 +61,9 @@ export default function Courses() {
                       <Typography gutterBottom variant="h6">
                         {item.title}
                       </Typography>
+                      {item.categories.map((category) => (
+                          <Typography key={category.id}>{category.name}</Typography>
+                      ))}
                       <Typography paragraph>{item.content}</Typography>
                       <Typography style={{ textAlign: "end" }}>
                         {new Date(item.createdAt).toLocaleDateString("fr-FR", {
@@ -73,12 +73,13 @@ export default function Courses() {
                         })}
                       </Typography>
                     </CardContent>
-                    <Link size="small">CONSULTER</Link>
+                    <Link >Consulter </Link>
                 </Card>
               </Grid>
             ))}
           </Grid>
         </Container>
+
       </Box>
     </div>
   );

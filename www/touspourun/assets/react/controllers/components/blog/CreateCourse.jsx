@@ -2,18 +2,23 @@ import React, {useRef, useState} from 'react';
 import '../../../../styles/app.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import {Box} from "@mui/material";
+import {Box, Input} from "@mui/material";
 import {DemoContainer} from '@mui/x-date-pickers/internals/demo';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import axios from "axios";
+import Category from './Category';
+
 
 export default function CreateCourse() {
+
+
     const [title, setTitle] = useState('');
     const [picture, setPicture] = useState('');
     const [content, setContent] = useState('');
-    const [createdAt, setCreatedAt] = useState('')
+    const [createdAt, setCreatedAt] = useState('');
+    const [selectedCategories, setSelectedCategories] = useState('');
     const fileInputRef = useRef('');
 
     const handleFileInputChange = (e) => {
@@ -23,6 +28,9 @@ export default function CreateCourse() {
         }
     };
 
+    const handleCategoryChange = (selected) => {
+        setSelectedCategories(selected);
+    };
     const handleUploadButtonClick = () => {
         fileInputRef.current.click();
     };
@@ -30,6 +38,7 @@ export default function CreateCourse() {
     const handleDateChange = (date) => {
           setCreatedAt(date);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -38,6 +47,7 @@ export default function CreateCourse() {
         formData.append('content', content);
         formData.append('picture', fileInputRef.current.files[0]);
         formData.append('createdAt', createdAt);
+        formData.append('categories',  selectedCategories);
 
         axios
             .post('http://localhost:48000/api/courses', formData, {
@@ -67,7 +77,7 @@ export default function CreateCourse() {
                     <TextField
                         className="input-field"
                         fullWidth
-                        label="Title"
+                        label="Titre"
                         name="title"
                         variant="outlined"
                         required
@@ -76,6 +86,7 @@ export default function CreateCourse() {
                     />
 
                     <input
+                        sx={{ mt: 1}}
                         type="file"
                         accept="image/*"
                         onChange={handleFileInputChange}
@@ -88,7 +99,7 @@ export default function CreateCourse() {
                         fullWidth
                         autoFocus
                         className="input-field"
-                        label="Content"
+                        label="Contenu"
                         name="content"
                         variant="outlined"
                         multiline
@@ -97,10 +108,13 @@ export default function CreateCourse() {
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                     />
+
+                    <Category onCategoryChange={handleCategoryChange}/>
+
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker']}>
                                 <DatePicker
-                                    label="Basic date picker"
+                                    label="Date"
                                     name="createdAt"
                                     value={createdAt}
                                     onChange={handleDateChange}
@@ -108,7 +122,7 @@ export default function CreateCourse() {
                             </DemoContainer>
                         </LocalizationProvider>
 
-                    <Button type="submit" fullWidth className="customButton" variant="contained"   sx={{ mt: 3, mb: 2 }}>
+                    <Button type="submit" fullWidth className="customButton" variant="contained" sx={{ mt: 3, mb: 2 }}>
                         Submit
                     </Button>
                 </form>

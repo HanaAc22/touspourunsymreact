@@ -2,12 +2,29 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use App\Controller\CourseController;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ApiResource( operations: [
+    new Get(),
+    new Post(controller: CourseController::class, deserialize: false),
+    new GetCollection(),
+    new Put(),
+    new Delete(),
+],
+    normalizationContext: [ 'groups' => ['course:read'], ['course_create:read'] ],
+    denormalizationContext: [ 'groups' => ['course:write'] ])]
 class Category {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,6 +32,7 @@ class Category {
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['course:read', 'course:write', 'category:read', 'category:write'])]
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Course::class, mappedBy: 'categories')]

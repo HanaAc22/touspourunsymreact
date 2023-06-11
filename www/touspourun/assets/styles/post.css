@@ -1,0 +1,23 @@
+.article-content {
+    line-height: 1.5;
+}
+
+.article-container {
+    padding: 16px;
+    margin-top: 16px;
+}
+
+.article-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+.article-title {
+    margin-bottom: 16px;
+}
+
+.article-content {
+    line-height: 1.5;
+}

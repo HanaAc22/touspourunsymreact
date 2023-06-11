@@ -23,7 +23,7 @@ trait PictureExtentionTrait {
                 $newFilename,
             );
         } catch (FileException $e) {
-
+            throw new FileException('the picture is not stored in the directory');
         }
 
         return $newFilename;

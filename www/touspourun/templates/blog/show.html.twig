@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+{#    {% include 'layout.html.twig' %}#}
+    <div id="course" {{ react_component('pages/public/Course') }}></div>
+{% endblock %}
