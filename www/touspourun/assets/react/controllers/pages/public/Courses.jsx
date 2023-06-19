@@ -65,7 +65,8 @@ export default function Courses() {
                       })}
                     </Typography>
                   </CardContent>
-                  <Link size="small">CONSULTER</Link>
+                  {/* <a href="/login">CONSULTER</a> */}
+                  <Link href="/login" size="small">CONSULTER</Link>
                 </Card>
               </Grid>
             ))}

@@ -1,0 +1,8 @@
+api_platform:
+  formats:
+    jsonld: [application/ld+json]
+    json: [application/json]
+    html: [text/html]
+    #adding jsonhal is a json with more details than jsonld the serializer understands this json type it could be also
+    #added above the class
+    jsonhal: [application/hal+json]

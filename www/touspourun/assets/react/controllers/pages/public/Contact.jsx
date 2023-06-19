@@ -11,10 +11,10 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { validEmail, validNameRgex, validMsgRgex } from "../../_utils/Regex";
-import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import React, { useState } from "react";
 
-const Contact = () => {
+const Contact1 = () => {
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -167,4 +167,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Contact1;

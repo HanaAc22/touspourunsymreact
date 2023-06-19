@@ -17,24 +17,24 @@ export default function Login() {
     //e.preventDefault();
 
 
-    // if (userName == "" || !validNameRgex.test(userName)) {
-    //   setUserNameErr(true);
-    // }
-    // if (validNameRgex.test(userName)) {
-    //   setUserNameErr(false);
-    // }
-    // if (!validEmail.test(email)) {
-    //   setMsg(true);
-    // }
-    // if (validEmail.test(email)) {
-    //   setMsg(false);
-    // }
-    // if (!validPassword.test(password)) {
-    //   setMsg(true);
-    // }
-    // if (validPassword.test(password)) {
-    //   setMsg(false);
-    // }
+    if (userName == "" || !validNameRgex.test(userName)) {
+      setUserNameErr(true);
+    }
+    if (validNameRgex.test(userName)) {
+      setUserNameErr(false);
+    }
+    if (!validEmail.test(email)) {
+      setMsg(true);
+    }
+    if (validEmail.test(email)) {
+      setMsg(false);
+    }
+    if (!validPassword.test(password)) {
+      setMsg(true);
+    }
+    if (validPassword.test(password)) {
+      setMsg(false);
+    }
 
     }
   function onChange(value) {

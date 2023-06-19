@@ -13,6 +13,7 @@
     transition: all 0.4s;
     font-family: Work Sans, Roboto, sans-serif;
 }
+
 .container{
     margin-left: 5%;
     margin-right: 5%;
@@ -76,8 +77,8 @@
 }
 
 .nav div.media_button {
-    width: 40px;
-    height: 30px;
+    width: 60px;
+    height: 20px;
     background-color: transparent;
     position: absolute;
     right: 15px;
@@ -92,6 +93,7 @@
     outline: 0;
     border: none;
     cursor: pointer;
+    margin : 0 !important;
 }
 
 .nav div.media_button button.main_media_button span{
@@ -100,6 +102,7 @@
     display: block;
     background-color: #fff;
     margin-bottom: 10px;
+    margin-top : 0 !important;
 }
 
 .nav div.media_button button.main_media_button:hover span:nth-of-type(1){
@@ -241,12 +244,14 @@
         background-color: var(--color-primary);
     }
 
-    .nav container.logo {
+    .nav .container.logo {
         margin-left: 15px;
     }
 
     .nav div.show_list {
         display: block;
+        font-size: 1.3rem;
+        padding: 20px;
     }
 
     .nav div.main_list ul {
