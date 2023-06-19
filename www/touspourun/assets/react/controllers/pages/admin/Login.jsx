@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import "../../../../styles/login.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import { validEmail, validNameRgex, validPassword } from "../../_utils/Regex";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { axios } from "axios";
 
 export default function Login() {
-  let token;
+
+  const [pwValueVisible, setPwValueVisible] = useState(false);
   const [userName, setUserName] = useState("");
   const [userNameErr, setUserNameErr] = useState(false);
   const [email, setEmail] = useState("");
@@ -12,10 +16,18 @@ export default function Login() {
   const [msgErr, setMsg] = useState(false);
   const [value, setValue] = useState("");
   const [verified, setVerified] = useState(false);
+
+  const showPassword = (e) => {
+    e.preventDefault();
+    setPwValueVisible(!pwValueVisible);
+  };
+
+  const apiUrl = "http://localhost:48000/api";
+
+
   const onSubmit = (e) => {
-
-    //e.preventDefault();
-
+    
+    e.preventDefault();
 
     if (userName == "" || !validNameRgex.test(userName)) {
       setUserNameErr(true);
@@ -35,11 +47,24 @@ export default function Login() {
     if (validPassword.test(password)) {
       setMsg(false);
     }
+  }
 
-    }
+
   function onChange(value) {
     console.log("Captcha value:", value);
     setVerified(true)
+    // poser un token
+      // axios
+      //   .post(`${apiUrl}/users`)
+      //   .then((res) => {
+      //     let token = res.data.token; 
+      //     localStorage.setItem("token", token);
+      //     console.log(token);
+
+      // })
+      // .catch (error => console.log(error));
+    // }
+
   };
 
   return (
@@ -56,7 +81,8 @@ export default function Login() {
         {userNameErr && <p>Merci de renseigner correctement votre pseudo</p>}
         {msgErr && <p>Votre e-mail ou mot de passe est invalide</p>}
       </div>
-      <form action="/" method="post">
+
+      <form action="#" method="post">
         <div className="group">
           <label htmlFor="_username">Pseudo* :</label>
           <input type="username" id="username" name="_username"></input>
@@ -68,9 +94,21 @@ export default function Login() {
         </div>
 
         <div className="group">
-          <label htmlFor="password">Mot de passe* :</label>
-          <input type="password" id="password" name="_password" />
-          <a href="/">Mot de passe oublié ?</a>
+          <label htmlFor="password" style={{ marginLeft: 22 }}>
+            Mot de passe* :
+          </label>
+          <div className="showPW">
+            <input
+              type={pwValueVisible ? "text" : "password"}
+              id="password"
+              name="_password"
+            />
+            <button className="eyeShow" onChange={showPassword}>
+              {pwValueVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </button>
+          </div>
+
+          <a href="#">Mot de passe oublié ?</a>
           {/* <input type="text" name="_csrf_token" value="{{ csrf_token('authenticate') }}" /> */}
         </div>
         <div className="storage">
@@ -84,7 +122,8 @@ export default function Login() {
               sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
               onChange={onChange}
           />
-          <button type="submit" onClick={onSubmit} disabled={verified}>
+          {/* <button type="submit" onClick={onSubmit} disabled={verified}> */}
+          <button className="soumettre" type="submit" onClick={onSubmit}>
             Connexion
           </button>
         </div>

@@ -1,7 +1,8 @@
-.loginContainer {
+.loginContainer .subsribeContainer{
     padding: 100px;
+    /* border: var(--color-primary) solid 2px; */
     color: var(--color-quaternary);
-    height: 100vh;
+    height: 100%;
 }
 .loginContainer h1{
     margin-bottom: 30px;
@@ -95,18 +96,84 @@ form input {
 }
 
 
-button{
+button.soumettre{
     display: block;
     border-radius: 3px;
-    height: 35px;
-    width: 150px;
+    height: 35px; 
+    width: 150px; 
     font-size: 1.1rem;
-    background-color: var(--color-primary);
+    background: var(--color-primary);
     color: var(--color-tertiary);
     margin: 20px auto;
     cursor: pointer;
 }
 
+button.soumettre:hover{
+    background-color: white;
+    color: var(--color-primary);
+    border: var(--color-primary) solid 1px;
+    font-size: 1.2rem;
+    padding: 2px;
+    height: 40px;
+}
+
+.showPW{
+    display: flex;
+    align-items: baseline;
+}
+.eyeShow{
+    width: 35px;
+    margin: auto 0px;
+}
+
+/*******************************Subscribe*************************************/
+.subsribeContainer h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.commonInfo, .finalForm {
+    border: red solid 2px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin: auto;
+}
+
+.profForm .group {
+    width: 300px;
+    border: purple 1px solid;
+}
+
+.subsribeContainer .group{
+    margin: 10px 20px;
+    /* border: 3px solid yellow; */
+    min-width: 100%;
+}
+
+.subsribeContainer label {
+    max-width: 35%;
+    white-space: normal;
+}
+.subsribeContainer .group.input input{
+    min-width: 55%;
+    white-space: normal;
+}
+
+.subsribeContainer select {
+    border: var(--color-primary) solid 1px;
+    height: 40px;
+    padding: 4px;
+    background: var(--color-tertiary);
+    color: var(--color-quaternary);
+    border-radius: 4px;
+    min-width: 250px;
+}
+
+.soumettre .nextBtn {
+    align-items: center;
+}
 
 /* Partie responsive */
 /* smartphone */
