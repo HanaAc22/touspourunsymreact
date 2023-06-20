@@ -24,7 +24,8 @@ export default function CreateCourse() {
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setPicture(file.name);
+            // setPicture(file.name);
+            setCreatedAt(date);
         }
     };
 

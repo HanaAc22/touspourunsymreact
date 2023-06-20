@@ -17,12 +17,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-#[ApiResource(  operations: [
-    new Post(controller: RegistrationController::class),
+#[UniqueEntity(fields: ['email'], message: 'Ce compte existe déjà avec cet email, veuillez vous identifier')]
+#[ApiResource( operations: [
+    new Post(controller : RegistrationController::class),
     new Get(controller: SecurityController::class),
     new GetCollection(),
     new Put(),
@@ -44,8 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+
     #[ORM\Column]
     private ?string $password = null;
+
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Question::class, cascade: ['persist'], orphanRemoval: true)]
     #[Assert\Valid]
@@ -58,6 +61,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $username = null;
+
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    private ?Profil $profil = null;
 
     public function getId(): ?int
     {
@@ -137,6 +143,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->username = $username;
     }
 
+
     /**
      * @see UserInterface
      */
@@ -172,6 +179,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $question->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfil(): ?Profil
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(?Profil $profil): self
+    {
+        $this->profil = $profil;
 
         return $this;
     }

@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { motion } from "framer-motion";
+=======
+// import { motion } from "framer-motion";
+>>>>>>> sarah
 
 const AssociationForm = ({ page, setPage, formData, setFormData }) => {
     return (

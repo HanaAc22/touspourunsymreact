@@ -1,51 +1,71 @@
 import React, { useState } from "react";
 import "../../../../styles/login.css";
+import ReCAPTCHA from "react-google-recaptcha";
 import { validEmail, validNameRgex, validPassword } from "../../_utils/Regex";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { axios } from "axios";
 
 export default function Login() {
-  let token;
+  const [pwValueVisible, setPwValueVisible] = useState(false);
   const [userName, setUserName] = useState("");
   const [userNameErr, setUserNameErr] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msgErr, setMsg] = useState(false);
   const [value, setValue] = useState("");
+  const [verified, setVerified] = useState(false);
+
+  const showPassword = (e) => {
+    e.preventDefault();
+    setPwValueVisible(!pwValueVisible);
+  };
+
+  const apiUrl = "http://localhost:48000/api";
 
   const onSubmit = (e) => {
-    let token;
-    //e.preventDefault();
+    e.preventDefault();
 
-    // if (userName == "" || !validNameRgex.test(userName)) {
-    //   setUserNameErr(true);
-    // }
-    // if (validNameRgex.test(userName)) {
-    //   setUserNameErr(false);
-    // }
-    // if (!validEmail.test(email)) {
-    //   setMsg(true);
-    // }
-    // if (validEmail.test(email)) {
-    //   setMsg(false);
-    // }
-    // if (!validPassword.test(password)) {
-    //   setMsg(true);
-    // }
-    // if (validPassword.test(password)) {
-    //   setMsg(false);
-    // }
-
-    try {
-      localStorage.setItem("token", token);
-      console.log(token);
-    } catch (error) {
-      console.log(error);
+    if (userName == "" || !validNameRgex.test(userName)) {
+      setUserNameErr(true);
+    }
+    if (validNameRgex.test(userName)) {
+      setUserNameErr(false);
+    }
+    if (!validEmail.test(email)) {
+      setMsg(true);
+    }
+    if (validEmail.test(email)) {
+      setMsg(false);
+    }
+    if (!validPassword.test(password)) {
+      setMsg(true);
+    }
+    if (validPassword.test(password)) {
+      setMsg(false);
     }
   };
+
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setVerified(true);
+    // poser un token
+    // axios
+    //   .post(`${apiUrl}/users`)
+    //   .then((res) => {
+    //     let token = res.data.token;
+    //     localStorage.setItem("token", token);
+    //     console.log(token);
+
+    // })
+    // .catch (error => console.log(error));
+    // }
+  }
 
   return (
     <div className="loginContainer">
       <h1>Page de connexion</h1>
-      <div>
+      <div className="parag">
         <p className="left">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
           optio.
@@ -56,21 +76,48 @@ export default function Login() {
         {userNameErr && <p>Merci de renseigner correctement votre pseudo</p>}
         {msgErr && <p>Votre e-mail ou mot de passe est invalide</p>}
       </div>
-      <form action="/" method="post">
+
+      <div className="form">
         <div className="group">
           <label htmlFor="_username">Pseudo* :</label>
-          <input type="username" id="username" name="_username"></input>
+          <input
+            type="username"
+            id="usernamelog"
+            name="_username"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required></input>
         </div>
 
         <div className="group">
           <label htmlFor="login">Email* :</label>
-          <input type="email" id="email" name="_email" />
+          <input
+            type="email"
+            id="emaillog"
+            name="_email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
 
         <div className="group">
           <label htmlFor="password">Mot de passe* :</label>
-          <input type="password" id="password" name="_password" />
-          <a href="/">Mot de passe oublié ?</a>
+          <div className="showPW">
+            <input
+              type={pwValueVisible ? "text" : "password"}
+              id="password"
+              name="_password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button className="eyeShow" onChange={showPassword}>
+              {pwValueVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </button>
+          </div>
+
+          <a href="#">Mot de passe oublié ?</a>
           {/* <input type="text" name="_csrf_token" value="{{ csrf_token('authenticate') }}" /> */}
         </div>
         <div className="storage">
@@ -80,11 +127,16 @@ export default function Login() {
         <div className="group">
           {/* ligne non fonctionnelle */}
           {/* <input type="hidden" name="app_profile" value="/profile" />  */}
-          <button type="submit" onClick={onSubmit}>
+          <ReCAPTCHA
+            sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
+            onChange={onChange}
+          />
+          {/* <button type="submit" onClick={onSubmit} disabled={verified}> */}
+          <button className="soumettre" type="submit" onClick={onSubmit}>
             Connexion
           </button>
         </div>
-      </form>
+      </div>
       <a href="/register">Je n'ai pas de compte</a>
     </div>
   );

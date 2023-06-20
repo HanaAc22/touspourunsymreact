@@ -12,7 +12,11 @@ import {Link, Route} from "react-router-dom";
 
 export default function Courses() {
   const [data, setData] = useState([]);
+<<<<<<< HEAD
   const apiUrl = "http://localhost:48000/api";
+=======
+  const apiUrl = "http://localhost:48000/api"
+>>>>>>> sarah
 
   useEffect(() => {
     axios
@@ -26,8 +30,13 @@ export default function Courses() {
   }, []);
 
   const getImageUrl = (picture) => {
+<<<<<<< HEAD
       return `/uploads/images/${picture}`;
   };
+=======
+    return `/uploads/images${picture}`;
+  }
+>>>>>>> sarah
 
   return (
     <div className="containerCourses">
@@ -55,6 +64,7 @@ export default function Courses() {
                     display: "flex",
                     flexDirection: "column",
                   }}
+<<<<<<< HEAD
                   >
                     <img src={getImageUrl(item.picture)} alt={item.title} />
                     <CardContent sx={{ flexGrow: 1 }}>
@@ -74,6 +84,25 @@ export default function Courses() {
                       </Typography>
                     </CardContent>
                     <Link >Consulter </Link>
+=======
+                  key={data.id}>
+                  <img src={getImageUrl(item.picture)} alt={item.title} />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h6">
+                      {item.title}
+                    </Typography>
+                    <Typography paragraph>{item.content}</Typography>
+                    <Typography style={{ textAlign: "end" }}>
+                      {new Date(item.createdAt).toLocaleDateString("fr-FR", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </Typography>
+                  </CardContent>
+                  {/* <a href="/login">CONSULTER</a> */}
+                  <Link href="/login" size="small">CONSULTER</Link>
+>>>>>>> sarah
                 </Card>
               </Grid>
             ))}
