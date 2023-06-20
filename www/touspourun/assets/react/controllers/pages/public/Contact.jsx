@@ -15,6 +15,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import React, { useState } from "react";
 
 const Contact1 = () => {
+  //regex
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -24,14 +25,17 @@ const Contact1 = () => {
   const [msg, setMsg] = useState("");
   const [msgErr, setMsgErr] = useState(false);
   const [validForm, setValidForm] = useState(false);
+  //gender
   const [value, setValue] = useState("");
+  //recaptcha
   const [verified, setVerified] = useState(false);
+  const [recaptchaChecked, setRecaptchaChecked] = useState(false);
 
   const validate = () => {
-    if (!validEmail.test(email)) {
+    if (email == "" || !validEmail.test(email)) {
       setEmailErr(true);
     }
-    if (validEmail.test(email)) {
+    if (email != "" && validEmail.test(email)) {
       setEmailErr(false);
     }
     if (!validNameRgex.test(firstName)) {
@@ -52,17 +56,20 @@ const Contact1 = () => {
     if(msg != "" && validMsgRgex.test(msg)){
       setMsgErr(false);
     }
-    if ((msg != "" && validMsgRgex.test(msg)) && (name != "" && validNameRgex.test(name)) && (firstName == "" || validNameRgex.test(firstName) && (validEmail.test(email)))  ) {
+    if ((msg != "" && validMsgRgex.test(msg)) && (name != "" && validNameRgex.test(name)) && (firstName == "" || validNameRgex.test(firstName) && (validEmail.test(email))) && (recaptchaChecked == true) ) {
       setValidForm(true);
     }
   };
 
+  //gender
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+  //recaptcha
   function onChange(value) {
     console.log("Captcha value:", value);
     setVerified(true)
+    setRecaptchaChecked(true)
   }
 
   return (
@@ -95,7 +102,7 @@ const Contact1 = () => {
           <form action="/contact" method="post">
             <Grid container spacing={1}>
               <Grid xs={12} sm={8} item>
-              <RadioGroup name="gender" className="gender" value={value} onChange={handleChange}>
+                <RadioGroup name="gender" className="gender" value={value} onChange={handleChange}>
                     <FormControlLabel value="female" control={<Radio />} label="M." />
                     <FormControlLabel value="male" control={<Radio />} label="Mme" />
                     <FormControlLabel value="other" control={<Radio />} label="Ne pas se prononcer" />
@@ -156,7 +163,6 @@ const Contact1 = () => {
                   className="btn-env"
                   onClick={validate}>
                   Envoyer
-                  disabled={verified}
                 </Button>
               </Grid>
             </Grid>

@@ -12,10 +12,11 @@ import { useEffect, useState } from "react";
 
 export default function Courses() {
   const [data, setData] = useState([]);
+  const apiUrl = "http://localhost:48000/api"
 
   useEffect(() => {
     axios
-      .get("http://localhost:48000/api/courses")
+      .get(`${apiUrl}/courses`)
       .then((response) => {
         setData(response.data["hydra:member"]);
       })
@@ -23,6 +24,10 @@ export default function Courses() {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  const getImageUrl = (picture) => {
+    return `/uploads/images${picture}`;
+  }
 
   return (
     <div className="containerCourses">
@@ -51,7 +56,7 @@ export default function Courses() {
                     flexDirection: "column",
                   }}
                   key={data.id}>
-                  <img src={item.picture} alt={item.title} />
+                  <img src={getImageUrl(item.picture)} alt={item.title} />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h6">
                       {item.title}

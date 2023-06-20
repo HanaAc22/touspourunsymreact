@@ -7,7 +7,6 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { axios } from "axios";
 
 export default function Login() {
-
   const [pwValueVisible, setPwValueVisible] = useState(false);
   const [userName, setUserName] = useState("");
   const [userNameErr, setUserNameErr] = useState(false);
@@ -24,9 +23,7 @@ export default function Login() {
 
   const apiUrl = "http://localhost:48000/api";
 
-
   const onSubmit = (e) => {
-    
     e.preventDefault();
 
     if (userName == "" || !validNameRgex.test(userName)) {
@@ -47,30 +44,28 @@ export default function Login() {
     if (validPassword.test(password)) {
       setMsg(false);
     }
-  }
-
+  };
 
   function onChange(value) {
     console.log("Captcha value:", value);
-    setVerified(true)
+    setVerified(true);
     // poser un token
-      // axios
-      //   .post(`${apiUrl}/users`)
-      //   .then((res) => {
-      //     let token = res.data.token; 
-      //     localStorage.setItem("token", token);
-      //     console.log(token);
+    // axios
+    //   .post(`${apiUrl}/users`)
+    //   .then((res) => {
+    //     let token = res.data.token;
+    //     localStorage.setItem("token", token);
+    //     console.log(token);
 
-      // })
-      // .catch (error => console.log(error));
+    // })
+    // .catch (error => console.log(error));
     // }
-
-  };
+  }
 
   return (
     <div className="loginContainer">
       <h1>Page de connexion</h1>
-      <div>
+      <div className="parag">
         <p className="left">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
           optio.
@@ -82,26 +77,40 @@ export default function Login() {
         {msgErr && <p>Votre e-mail ou mot de passe est invalide</p>}
       </div>
 
-      <form action="#" method="post">
+      <div className="form">
         <div className="group">
           <label htmlFor="_username">Pseudo* :</label>
-          <input type="username" id="username" name="_username"></input>
+          <input
+            type="username"
+            id="usernamelog"
+            name="_username"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required></input>
         </div>
 
         <div className="group">
           <label htmlFor="login">Email* :</label>
-          <input type="email" id="email" name="_email" />
+          <input
+            type="email"
+            id="emaillog"
+            name="_email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
 
         <div className="group">
-          <label htmlFor="password" style={{ marginLeft: 22 }}>
-            Mot de passe* :
-          </label>
+          <label htmlFor="password">Mot de passe* :</label>
           <div className="showPW">
             <input
               type={pwValueVisible ? "text" : "password"}
               id="password"
               name="_password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <button className="eyeShow" onChange={showPassword}>
               {pwValueVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
@@ -119,15 +128,15 @@ export default function Login() {
           {/* ligne non fonctionnelle */}
           {/* <input type="hidden" name="app_profile" value="/profile" />  */}
           <ReCAPTCHA
-              sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
-              onChange={onChange}
+            sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
+            onChange={onChange}
           />
           {/* <button type="submit" onClick={onSubmit} disabled={verified}> */}
           <button className="soumettre" type="submit" onClick={onSubmit}>
             Connexion
           </button>
         </div>
-      </form>
+      </div>
       <a href="/register">Je n'ai pas de compte</a>
     </div>
   );

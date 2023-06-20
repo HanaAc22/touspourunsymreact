@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class BlogController extends AbstractController
 {
 //    #[isGranted('ROLE_USER')]
-    #[Route('/blog/show', name: 'app_blog_show')]
+    #[Route('/blog/show', name: 'app_blog_show', methods: ['GET', 'POST'])]
     public function index(): Response
     {
         return $this->render('blog/index.html.twig', [
