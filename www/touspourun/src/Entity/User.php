@@ -49,47 +49,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[Assert\Regex(
-        pattern: '/\d/',
-        match: false,
-        message: 'Votre nom ne doit pas contenir de chiffre',
-    )]
-    #[ORM\Column(length: 100)]
-    private ?string $firstname = null;
-
-    #[Assert\Regex(
-        pattern: '/\d/',
-        match: false,
-        message: 'Votre nom ne doit pas contenir de chiffre',
-    )]
-    #[ORM\Column(length: 100)]
-    private ?string $lastname = null;
-
-    #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'user:write', 'user:edit'])]
-    private ?string $picture = null;
-
-    #[ORM\Column(length:5)]
-    private ?string $zipCode = null;
-
-    #[ORM\Column(length:14)]
-    private ?string $siret = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $assoName = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $adress = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $city = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $schoolName = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $teachingLevel = null;
-
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Question::class, cascade: ['persist'], orphanRemoval: true)]
     #[Assert\Valid]
@@ -102,6 +61,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $username = null;
+
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    private ?Profil $profil = null;
 
     public function getId(): ?int
     {
@@ -181,169 +143,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->username = $username;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setFirstname(?string $firstname): void
-    {
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setLastname(?string $lastname): void
-    {
-        $this->lastname = $lastname;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function setPicture(?string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getZipCode(): ?string
-    {
-        return $this->zipCode;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setZipCode(?string $zipCode): void
-    {
-        $this->zipCode = $zipCode;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getSiret(): ?string
-    {
-        return $this->siret;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setSiret(?string $siret): void
-    {
-        $this->siret = $siret;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getAssoName(): ?string
-    {
-        return $this->assoName;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setAssoName(?string $assoName): void
-    {
-        $this->assoName = $assoName;
-    }
-
-
-    /**
-     * @return string|null
-     */
-    public function getAdress(): ?string
-    {
-        return $this->adress;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setAdress(?string $adress): void
-    {
-        $this->adress = $adress;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setCity(?string $city): void
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getSchoolName(): ?string
-    {
-        return $this->schoolName;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setSchoolName(?string $schoolName): void
-    {
-        $this->schoolName = $schoolName;
-    }
-
-     /**
-     * @return string|null
-     */
-    public function getTeachingLevel(): ?string
-    {
-        return $this->teachingLevel;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setTeachingLevel(?string $teachingLevel): void
-    {
-        $this->teachingLevel = $teachingLevel;
-    }
-
 
     /**
      * @see UserInterface
@@ -380,6 +179,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $question->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfil(): ?Profil
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(?Profil $profil): self
+    {
+        $this->profil = $profil;
 
         return $this;
     }
