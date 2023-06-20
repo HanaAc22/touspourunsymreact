@@ -1,25 +1,35 @@
-.loginContainer {
+.loginContainer .subsribeContainer{
     padding: 100px;
-    border: var(--color-primary) solid 2px;
+    /* border: var(--color-primary) solid 2px; */
     color: var(--color-quaternary);
-    height: 100vh;
+    height: 100%;
+}
+.loginContainer{
+    padding-top: 100px !important;
 }
 .loginContainer h1{
     margin-bottom: 30px;
     text-align: center;
 }
 .error p{
-    text-align: center;
+    /* text-align: center; */
     margin: 4px;
     color: var(--color-errormsg);
     font-weight: bold;
-    letter-spacing: 3;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
-.loginContainer form{
+.loginContainer .parag{
+    margin: 0px auto;
+    max-width: 70%;
+}
+.loginContainer .form{
     padding: 10px 50px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70%;
     border: var(--color-primary) solid 2px;
     display: flex;
     flex-direction: column;
@@ -33,14 +43,14 @@
     justify-content: space-between;
     align-items: start;
 }
-.loginContainer form input{
+.loginContainer .form input{
     min-width: 400px;
     border: var(--color-primary) solid 2px;
     padding: 5px;
     border-radius: 3px;
 }
 
-.loginContainer form .storage{
+.loginContainer .form .storage{
     display: flex;
     justify-content: start;
     align-items: center;
@@ -48,10 +58,10 @@
     padding: 5px;
     min-width: 200px;
 }
-.loginContainer form .storage input{
+.loginContainer .form .storage input{
     margin: 0 !important;
 }
-.loginContainer form .storage input {
+.loginContainer .form .storage input {
     /* width: 20px;
     height: 20px; */
     max-width: 20px !important;
@@ -68,7 +78,18 @@
     text-align: left;
     margin: 5px;
 }
+.subsribeContainer p {
 
+    color: rgb(216, 108, 108);
+}
+
+.gender{
+    color: var(--color-quaternary);
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    font-weight: 800;
+}
 .subscribe #statut{
     margin-top: 20px;
     height: 35px;
@@ -96,30 +117,118 @@ form input {
 }
 
 
-button{
+button.soumettre{
     display: block;
     border-radius: 3px;
-    height: 35px;
-    width: 150px;
+    height: 35px; 
+    width: 150px; 
     font-size: 1.1rem;
-    background-color: var(--color-primary);
+    background: var(--color-primary);
     color: var(--color-tertiary);
     margin: 20px auto;
     cursor: pointer;
 }
 
+button.soumettre:hover{
+    background-color: white;
+    color: var(--color-primary);
+    border: var(--color-primary) solid 1px;
+    font-size: 1.2rem;
+    padding: 2px;
+    height: 40px;
+}
+
+.showPW{
+    display: flex;
+    align-items: baseline;
+}
+.eyeShow{
+    width: 35px;
+    margin: auto 0px;
+}
+
+/*******************************Subscribe*************************************/
+.subsribeContainer h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.commonInfo, .finalForm {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin: auto;
+}
+
+#schoolCity , #email, #roleType, #levelTeaching, #schoolName, #siret, #assoAdress {
+    min-width: 50% !important;
+}
+#firstname, #lastname, #username, #schoolCity, #assoZipcode, #assoCity {
+    min-width: 45% !important;
+}
+#password, #confirm_pw, #usernamelog, #emaillog{
+    width: 100%;
+}
+.assoForm, .profForm{
+    width: 100%;
+} 
+.showPW {
+    width: 60%;
+}
+.commonInfo .group{
+    margin: 10px 20px;
+    min-width: 100%;
+}
+
+/* .subsribeContainer label {
+    max-width: 35%;
+    white-space: normal;
+} */
+/* .subsribeContainer .group.input input{
+    min-width: 55%;
+    white-space: normal;
+} */
+
+/* .assoForm .group {
+    /* width:= 300px; */
+/*    border: purple 1px solid;
+}
+.assoForm .groupformName.group.showPW{
+    width: 60px;
+    white-space: normal;
+} */
+
+/* #assoZipcode{
+    width: 60px;
+
+} */
+
+.subsribeContainer select {
+    border: var(--color-primary) solid 1px;
+    height: 40px;
+    padding: 4px;
+    background: var(--color-tertiary);
+    color: var(--color-quaternary);
+    border-radius: 4px;
+    min-width: 250px;
+}
+
+.soumettre .nextBtn {
+    align-items: center;
+}
 
 /* Partie responsive */
 /* smartphone */
 @media screen and (max-width: 767px){
-    .authentication{
+    .authentication, .showPW{
         flex-direction: column;
     }
 }
 /* ne fonctionne pas \(ToT)/ */
 /* tablet */
 @media screen and (max-width: 1023){
-    .authentication{
+    .authentication, .showPW{
         flex-direction: column;
         padding: 20px;
     }

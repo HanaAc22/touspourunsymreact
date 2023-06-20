@@ -11,8 +11,15 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { validEmail, validNameRgex, validMsgRgex } from "../../_utils/Regex";
+import ReCAPTCHA from "react-google-recaptcha";
 import React, { useState } from "react";
+<<<<<<< HEAD
 const Contact = () => {
+=======
+
+const Contact1 = () => {
+  //regex
+>>>>>>> sarah
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -22,13 +29,17 @@ const Contact = () => {
   const [msg, setMsg] = useState("");
   const [msgErr, setMsgErr] = useState(false);
   const [validForm, setValidForm] = useState(false);
+  //gender
   const [value, setValue] = useState("");
+  //recaptcha
+  const [verified, setVerified] = useState(false);
+  const [recaptchaChecked, setRecaptchaChecked] = useState(false);
 
   const validate = () => {
-    if (!validEmail.test(email)) {
+    if (email == "" || !validEmail.test(email)) {
       setEmailErr(true);
     }
-    if (validEmail.test(email)) {
+    if (email != "" && validEmail.test(email)) {
       setEmailErr(false);
     }
     if (!validNameRgex.test(firstName)) {
@@ -38,36 +49,36 @@ const Contact = () => {
       setFirstNameErr(false);
     }
     if (name == "" || !validNameRgex.test(name)) {
-      setNameErr(true);
+      setNameErr(true)
     }
     if (name != "" && validNameRgex.test(name)) {
-      setNameErr(false);
+      setNameErr(false)
     }
-    if (msg == "" || !validMsgRgex.test(msg)) {
+    if(msg == "" || !validMsgRgex.test(msg)){
       setMsgErr(true);
     }
-    if (msg != "" && validMsgRgex.test(msg)) {
+    if(msg != "" && validMsgRgex.test(msg)){
       setMsgErr(false);
     }
-    if (
-      msg != "" &&
-      validMsgRgex.test(msg) &&
-      name != "" &&
-      validNameRgex.test(name) &&
-      (firstName == "" ||
-        (validNameRgex.test(firstName) && validEmail.test(email)))
-    ) {
+    if ((msg != "" && validMsgRgex.test(msg)) && (name != "" && validNameRgex.test(name)) && (firstName == "" || validNameRgex.test(firstName) && (validEmail.test(email))) && (recaptchaChecked == true) ) {
       setValidForm(true);
     }
   };
 
+  //gender
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+  //recaptcha
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setVerified(true)
+    setRecaptchaChecked(true)
+  }
 
   return (
-    <div>
-      <Card className="main">
+    <div className="contactComponent">
+      <Card id="main">
         <CardContent className="pres">
           <Typography variant="h1">Contactez nous</Typography>
           <Typography variant="body" components="p">
@@ -81,40 +92,24 @@ const Contact = () => {
         </CardContent>
         <CardContent className="formCont">
           <Typography variant="h2">Nous écrire</Typography>
-          {nameErr && <p>Merci de renseigner correctement votre nom</p>}
-          {firstNameErr && <p>Merci de renseigner correctement votre prénom</p>}
-          {emailErr && <p>Votre e-mail est invalide</p>}
-          {msgErr && <p>Merci de renseigner correctement votre message</p>}
+          {nameErr && (
+            <p>Merci de renseigner correctement votre nom</p>)}
+          {firstNameErr && (
+            <p>Merci de renseigner correctement votre prénom</p>)}
+          {emailErr && (
+            <p>Votre e-mail est invalide</p>)}
+          {msgErr && (
+            <p>Merci de renseigner correctement votre message</p>)}
           {validForm && (
-            <p className="validForm">
-              Votre message est bien envoyé ✅. Nous vous contacterons dès que
-              possible 🙂
-            </p>
-          )}
-
+            <p className="validForm">Votre message est bien envoyé ✅. Nous vous contacterons dès que possible 🙂</p>)}
+          
           <form action="/contact" method="post">
             <Grid container spacing={1}>
               <Grid xs={12} sm={8} item>
-                <RadioGroup
-                  name="gender"
-                  className="gender"
-                  value={value}
-                  onChange={handleChange}>
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="M."
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="Mme"
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio />}
-                    label="Ne pas se prononcer"
-                  />
+                <RadioGroup name="gender" className="gender" value={value} onChange={handleChange}>
+                    <FormControlLabel value="female" control={<Radio />} label="M." />
+                    <FormControlLabel value="male" control={<Radio />} label="Mme" />
+                    <FormControlLabel value="other" control={<Radio />} label="Ne pas se prononcer" />
                 </RadioGroup>
               </Grid>
               <Grid xs={12} sm={8} item>
@@ -162,6 +157,10 @@ const Contact = () => {
                 />
               </Grid>
               <Grid item>
+                <ReCAPTCHA
+                    sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
+                    onChange={onChange}
+                />
                 <Button
                   type="submit"
                   variant="contain"

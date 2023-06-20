@@ -21,7 +21,7 @@ export const CardHome = () => {
                 Lizards are a widespread group of squamate reptiles, with over
                 6,000 species, ranging across all continents except Antarctica
                 <br />
-                <Link>Consulter</Link>
+                <Link href="../blog/show">Consulter</Link>
               </Typography>
             </CardContent>
           </Card>

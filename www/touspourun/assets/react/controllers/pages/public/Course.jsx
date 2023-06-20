@@ -9,8 +9,14 @@ export default function Course({id}) {
 
     useEffect(() => {
                 function fetchData() {
+<<<<<<< HEAD
                     axios.get(`http://localhost:48000/api/courses/${id}`);
                         .then(response => {
+=======
+                    // axios.get(`http://localhost:48000/api/courses/${id}`)
+                    axios.get(`http://localhost:48000/api/courses/${id}`)
+                         .then(response => {
+>>>>>>> sarah
                             setCourse(response.data)
                             console.log(response.data);
                         })
