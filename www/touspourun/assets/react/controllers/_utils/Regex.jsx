@@ -1,13 +1,4 @@
 export const validEmail = new RegExp(
-<<<<<<< HEAD
-    /[a-zA-Z0-9-]+@[a-zA-Z0-9-]+.[a-zA-Z]{2,6}$/
-);
-export const validPassword = new RegExp(
-    "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-);
-export const validConnectPassword = new RegExp(
-    "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-=======
     /[a-zA-Z0-9-]+@{1}[a-zA-Z0-9-_]+.[a-zA-Z]{2,6}$/
 );
 export const validPassword = new RegExp(
@@ -15,7 +6,6 @@ export const validPassword = new RegExp(
 );
 export const validConnectPassword = new RegExp(
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
->>>>>>> sarah
 );
 export const validSiret = new RegExp("^[0-9]{14}$");
 export const validZipCode = new RegExp("^[0-9 ]{5}$");

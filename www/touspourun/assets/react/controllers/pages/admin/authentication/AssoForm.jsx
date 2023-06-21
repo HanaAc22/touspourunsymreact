@@ -3,7 +3,7 @@ import React from 'react';
 const AssoForm = () => {
 
     return (
-        <>
+        <div>
             <div className="step-title">Information liées à l'association</div>
             <div className="groupformName">
                 <label htmlFor="firstname">Nom de l'association :</label>
@@ -16,7 +16,7 @@ const AssoForm = () => {
                 <a href='#'>Retour</a>
                 <a href='#'>Suivant</a>
             </div>
-        </>
+        </div>
     );
 };
 

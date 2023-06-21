@@ -13,13 +13,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { validEmail, validNameRgex, validMsgRgex } from "../../_utils/Regex";
 import ReCAPTCHA from "react-google-recaptcha";
 import React, { useState } from "react";
-<<<<<<< HEAD
-const Contact = () => {
-=======
 
-const Contact1 = () => {
+const Contact = () => {
   //regex
->>>>>>> sarah
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [firstName, setFirstName] = useState("");
