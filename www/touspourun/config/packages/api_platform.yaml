@@ -6,4 +6,4 @@ api_platform:
     #adding jsonhal is a json with more details than jsonld the serializer understands this json type it could be also
     #added above the class
     jsonhal: [application/hal+json]
-    multipaer: [multipart/form-data]
+    multipart: [multipart/form-data]

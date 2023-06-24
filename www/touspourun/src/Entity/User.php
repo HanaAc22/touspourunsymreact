@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Controller\RegistrationController;
 use App\Controller\SecurityController;
@@ -17,13 +17,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Ce compte existe déjà avec cet email, veuillez vous identifier')]
-#[ApiResource( operations: [
-    new Post(controller : RegistrationController::class),
+#[ApiResource(operations: [
+    new Post(controller: RegistrationController::class),
     new Get(controller: SecurityController::class),
     new GetCollection(),
     new Put(),
@@ -36,6 +35,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9-]+@{1}[a-zA-Z0-9-_]+.[a-zA-Z]{2,6}$/',
+        htmlPattern: '^[a-zA-Z0-9-]+@{1}[a-zA-Z0-9-_]+.[a-zA-Z]{2,6}$',
+        message: 'l\'email {{ value }} n\'est pas valide.',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -45,7 +50,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).$/',
+        htmlPattern: '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).$',
+    )]
+    #[Assert\Length(
+        min: 12,
+        minMessage: 'Le mot de passe doit contenir au moins 12 caractères.',
+    )]
     #[ORM\Column]
     private ?string $password = null;
 
@@ -59,6 +72,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->questions = new ArrayCollection();
     }
 
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9-_]+$/i',
+        htmlPattern: '^[a-zA-Z0-9-_]+$',
+        message: 'veuillez renseigner correctement votre pseudo',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $username = null;
 

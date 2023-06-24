@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "../../../../styles/login.css";
-import { validEmail, validNameRgex, validPassword, validSiret, validAdressRgex, validZipCode } from "../../_utils/Regex";
+import {
+  validEmail,
+  validNameRgex,
+  validPassword,
+  validSiret,
+  validAdressRgex,
+  validZipCode,
+} from "../../_utils/Regex";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -105,11 +112,10 @@ const Subscribe = () => {
       setZipCodeErr(false);
     }
 
-
     // if (
     //   (validNameRgex.test(name)) && (validNameRgex.test(firstName)) &&
     //   (validEmail.test(email)) && (validPassword.test(pw)) && (pw == confirmPw)
-    //   (validAdressRgex.test(adress)) && (validNameRgex.test(city)) && (validZipCode(zipCode)) && 
+    //   (validAdressRgex.test(adress)) && (validNameRgex.test(city)) && (validZipCode(zipCode)) &&
     //   (validSiret(numSIRET))
     // ) {
     //   setValidForm(true);
@@ -142,10 +148,12 @@ const Subscribe = () => {
       <form action="#" method="post">
         <div className="commonInfo">
           <h2>Informations générales</h2>
-          <p className="left" style={{color: "green"}}>* éléments requis pour l'inscription</p>
+          <p className="left" style={{ color: "green" }}>
+            * éléments requis pour l'inscription
+          </p>
 
           <div className="gender">
-            <label >Genre :</label>
+            <label>Genre :</label>
             <input type="radio" value="female" name="gender" label="Mme" />
             <label htmlFor="female">Mme</label>
             <input type="radio" value="male" name="gender" label="M." />
@@ -195,7 +203,7 @@ const Subscribe = () => {
               placeholder="Pseudo"></input>
           </div>
           <div className="group input">
-          {emailErr && <p>Merci de renseigner correctement votre email</p>}
+            {emailErr && <p>Merci de renseigner correctement votre email</p>}
             <label htmlFor="email">E-mail* :</label>
             <input
               type="email"
@@ -207,7 +215,12 @@ const Subscribe = () => {
               placeholder="E-mail"></input>
           </div>
           <div className="showPW group input">
-          {pwErr && <p>Le mot de passe doit contenir au moins : 12 caractères, 1 Majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial</p>}
+            {pwErr && (
+              <p>
+                Le mot de passe doit contenir au moins : 12 caractères, 1
+                Majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial
+              </p>
+            )}
             <label htmlFor="password">Mot de passe* :</label>
             <div className="showPW">
               <input
@@ -219,7 +232,7 @@ const Subscribe = () => {
                 placeholder="Mot de passe"
                 required
               />
-              <button className="eyeShow" onChange={showPassword}>
+              <button className="eyeShow" onClick={showPassword}>
                 {pwValueVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </button>
             </div>
@@ -227,7 +240,7 @@ const Subscribe = () => {
           <div className="showPW group input">
             <label htmlFor="confirm_pw">Confirmer le mot de passe* :</label>
             <div className="showPW">
-            {confirmPwErr && <p>Les mots de passe ne sont pas identiques</p>}
+              {confirmPwErr && <p>Les mots de passe ne sont pas identiques</p>}
               <input
                 type="password"
                 id="confirm_pw"
@@ -236,7 +249,7 @@ const Subscribe = () => {
                 onChange={(e) => setConfirmPw(e.target.value)}
                 required
                 placeholder="Confirmer le mot de passe"></input>
-              <button className="eyeShow" onChange={showPassword}>
+              <button className="eyeShow" onClick={showPassword}>
                 {pwValueVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </button>
             </div>
@@ -244,7 +257,11 @@ const Subscribe = () => {
 
           <div className="group input">
             <label htmlFor="role">Profile* :</label>
-            <select id="roleType" name="role" onChange={changeProfilValue} required>
+            <select
+              id="roleType"
+              name="role"
+              onChange={changeProfilValue}
+              required>
               <option>Mon profile type</option>
               <option value="parent">Parent</option>
               <option value="prof">Enseignant</option>
@@ -271,7 +288,9 @@ const Subscribe = () => {
             </div>
 
             <div className="group input">
-            {schoolErr && <p>Merci de renseigner le nom de l'établissement</p>}
+              {schoolErr && (
+                <p>Merci de renseigner le nom de l'établissement</p>
+              )}
               <label htmlFor="schoolName">Nom d'établissement* :</label>
               <input
                 type="text"
@@ -284,7 +303,7 @@ const Subscribe = () => {
               />
             </div>
 
-              {cityErr && <p>Merci de renseigner la ville de l'établissement</p>}
+            {cityErr && <p>Merci de renseigner la ville de l'établissement</p>}
             <div className="group input" style={{ display: "flex" }}>
               <label htmlFor="schoolCity">
                 Département de l'établissement* :
@@ -311,7 +330,11 @@ const Subscribe = () => {
             <h2>Informations liées à l'association</h2>
 
             <div className="group input">
-            {numSIRETErr && <p>Merci de renseigner les 14 chiffres composant votre N° SIERT</p>}
+              {numSIRETErr && (
+                <p>
+                  Merci de renseigner les 14 chiffres composant votre N° SIERT
+                </p>
+              )}
               <label htmlFor="siret">N° SIRET</label>
               <input
                 type="text"
@@ -325,7 +348,9 @@ const Subscribe = () => {
             </div>
 
             <div className="group input">
-            {adressErr && <p>Merci de renseigner l'adresse de l'établissement</p>}
+              {adressErr && (
+                <p>Merci de renseigner l'adresse de l'établissement</p>
+              )}
               <label htmlFor="assoAdress">Adresse de l'association :</label>
               <input
                 type="text"
@@ -338,7 +363,9 @@ const Subscribe = () => {
               />
             </div>
             <div className="group input">
-            {zipCodeErr && <p>Merci de renseigner correctement le code postal</p>}
+              {zipCodeErr && (
+                <p>Merci de renseigner correctement le code postal</p>
+              )}
               <label htmlFor="assoZipcode">Code postal :</label>
               <input
                 type="text"
@@ -351,7 +378,9 @@ const Subscribe = () => {
               />
             </div>
             <div className="group input">
-            {cityErr && <p>Merci de renseigner la ville de l'établissement</p>}
+              {cityErr && (
+                <p>Merci de renseigner la ville de l'établissement</p>
+              )}
               <label htmlFor="assoCity">Commune :</label>
               <input
                 type="text"
@@ -375,8 +404,12 @@ const Subscribe = () => {
               display:
                 profilChoice == "parent" || boolVisible ? "block" : "none",
             }}>
-              {validForm && (
-            <p className="validForm">Votre inscription est bien prise en compte ✅. Bienvenue dans l'équipe 🙂</p>)}
+            {validForm && (
+              <p className="validForm">
+                Votre inscription est bien prise en compte ✅. Bienvenue dans
+                l'équipe 🙂
+              </p>
+            )}
             <ReCAPTCHA
               sitekey="6Lc2sGkmAAAAAIlDYxj_zWGjOYnAw0dbOKWXqKL-"
               onChange={onChange}

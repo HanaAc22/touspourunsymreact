@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profil;
 use App\Entity\User;
 use App\Form\Model\UserAuthModel;
 use App\Form\RegistrationFormType;
@@ -20,12 +21,12 @@ class RegistrationController extends AbstractController
 
         $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
+        $user = new User();
+        $profile = new Profil();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $userModel = $form->getData();
-
-            $user = new User();
 
             $user->setUsername($userModel->username);
             $user->setEmail($userModel->email);

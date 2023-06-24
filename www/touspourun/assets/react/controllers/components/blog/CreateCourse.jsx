@@ -10,6 +10,7 @@ import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import axios from "axios";
 
 export default function CreateCourse() {
+    
     const [title, setTitle] = useState('');
     const [picture, setPicture] = useState('');
     const [content, setContent] = useState('');

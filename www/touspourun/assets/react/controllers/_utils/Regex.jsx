@@ -10,7 +10,7 @@ export const validConnectPassword = new RegExp(
 export const validSiret = new RegExp("^[0-9]{14}$");
 export const validZipCode = new RegExp("^[0-9 ]{5}$");
 export const validNameRgex = new RegExp("^[a-zA-Z0-9-_ ]{2,25}$");
-export const validAdressRgex = new RegExp("^[a-zA-Z0-9- ]{2,255}$");
+export const validAdressRgex = new RegExp("^[a-zA-Z0-9- ]{,255}$");
 export const validMsgRgex = new RegExp("^[a-zA-Z0-9-_ '.#?!@$%^&*,\n\r\s\b]{5,550}$");
 
 //Au moins un chiffre. Vous pouvez supprimer cette condition en supprimant (?=.* ?[0-9])

@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProfilRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * 
+ */
 #[ORM\Entity(repositoryClass: ProfilRepository::class)]
 #[ApiResource]
 class Profil
@@ -17,24 +19,70 @@ class Profil
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z-]\d+$/i',
+        htmlPattern: '^[a-zA-Z-]\d+$',
+        match: false,
+        message: 'votre prénom ne doit pas contenir de chiffre',
+    )]
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $firstname = null;
 
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z-]\d+$/i',
+        htmlPattern: '^[a-zA-Z-]\d+$',
+        match: false,
+        message: 'votre prénom ne doit pas contenir de chiffre',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $lastname = null;
 
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9-_.]$/i',
+        htmlPattern: '^[a-zA-Z0-9-_.]$',
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
+    #[Assert\Regex(
+        pattern: '/^[0-9]$/',
+        htmlPattern: '^[0-9]$',
+    )]
+    #[Assert\Length(
+        min: 5,
+        max: 5,
+        minMessage: 'Veuillez enseigner les 5 chiffres du département',
+        maxMessage: 'Veuillez enseigner les 5 chiffres du département',
+    )]
     #[ORM\Column(length: 5, nullable: true)]
     private ?string $zipCode = null;
 
+    #[Assert\Regex(
+        pattern: '/^[0-9]{14}$/',
+        htmlPattern: '^[0-9]{14}$',
+    )]
+    #[Assert\Length(
+        min: 14,
+        max: 14,
+        minMessage: 'Veuillez enseigner les 14 chiffres composant votre N° SIRET',
+        maxMessage: 'Veuillez enseigner les 14 chiffres composant votre N° SIRET',
+    )]
     #[ORM\Column(length: 14, nullable: true)]
     private ?string $siret = null;
 
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9-_.!?* ]$/',
+        htmlPattern: '^[a-zA-Z0-9-_.!?* ]$',
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $assoName = null;
 
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9 ]$/',
+        htmlPattern: '^[a-zA-Z0-9-_.!?* ]$',
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
@@ -47,14 +95,6 @@ class Profil
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $teachingLevel = null;
 
-    #[ORM\OneToMany(mappedBy: 'profil', targetEntity: User::class)]
-    private Collection $user;
-
-    public function __construct()
-    {
-        $this->user = new ArrayCollection();
-    }
-    
 
     public function getId(): ?int
     {
@@ -180,36 +220,4 @@ class Profil
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
-            $user->setProfil($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getProfil() === $this) {
-                $user->setProfil(null);
-            }
-        }
-
-        return $this;
-    }
-
-   
 }

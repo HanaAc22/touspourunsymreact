@@ -13,15 +13,14 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msgErr, setMsg] = useState(false);
-  const [value, setValue] = useState("");
-  const [verified, setVerified] = useState(false);
+  const apiUrl = "http://localhost:48000/api";
 
   const showPassword = (e) => {
+    console.log(pwValueVisible)
     e.preventDefault();
     setPwValueVisible(!pwValueVisible);
+    console.log(pwValueVisible)
   };
-
-  const apiUrl = "http://localhost:48000/api";
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -48,18 +47,6 @@ export default function Login() {
 
   function onChange(value) {
     console.log("Captcha value:", value);
-    setVerified(true);
-    // poser un token
-    // axios
-    //   .post(`${apiUrl}/users`)
-    //   .then((res) => {
-    //     let token = res.data.token;
-    //     localStorage.setItem("token", token);
-    //     console.log(token);
-
-    // })
-    // .catch (error => console.log(error));
-    // }
   }
 
   return (
@@ -112,7 +99,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button className="eyeShow" onChange={showPassword}>
+            <button className="eyeShow" onClick={showPassword}>
               {pwValueVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </button>
           </div>

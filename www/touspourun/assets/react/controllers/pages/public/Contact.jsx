@@ -14,7 +14,7 @@ import { validEmail, validNameRgex, validMsgRgex } from "../../_utils/Regex";
 import ReCAPTCHA from "react-google-recaptcha";
 import React, { useState } from "react";
 
-const Contact1 = () => {
+const Contact = () => {
   //regex
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
@@ -173,4 +173,4 @@ const Contact1 = () => {
   );
 };
 
-export default Contact1;
+export default Contact;

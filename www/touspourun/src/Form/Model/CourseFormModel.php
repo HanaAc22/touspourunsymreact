@@ -10,7 +10,8 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-class CourseFormModel {
+class CourseFormModel
+{
     #[Assert\NotBlank]
     private string $title = '';
 
@@ -46,7 +47,6 @@ class CourseFormModel {
             $this->categories = $course->getCategories();
             $this->updatedAt = new DateTimeImmutable('now');
         }
-
     }
     /**
      * @return string
@@ -73,7 +73,6 @@ class CourseFormModel {
     {
         $this->picture = $picture;
         $this->decodedData = base64_decode($picture);
-
     }
 
     /**
@@ -168,5 +167,4 @@ class CourseFormModel {
     {
         return $this->decodedData;
     }
-
 }
